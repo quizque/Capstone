@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "MS563702BA03-50")(type "KiCad")(uri "${KIPRJMOD}/libraries/MS563702BA03-50/MS563702BA03-50.kicad_sym")(options "")(descr ""))
+  (lib (name "ESP32-C3-MINI-1-N4")(type "KiCad")(uri "${KIPRJMOD}/libraries/ESP32-C3-MINI-1-N4/ESP32-C3-MINI-1-N4.kicad_sym")(options "")(descr ""))
+)

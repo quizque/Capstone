@@ -12,6 +12,7 @@ if devices:
     for d in devices:
         print(hex(d))
         
+exit(0)
 
 def reg_write(i2c, addr, reg, data):
     """

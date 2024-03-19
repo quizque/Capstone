@@ -1,0 +1,169 @@
+(footprint "MS5637"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "MS5637")
+	(tags "Integrated Circuit")
+	(property "Reference" "IC**"
+		(at 3 -0.00763 90)
+		(layer "F.SilkS")
+		(uuid "af5e48e9-f388-4822-a54c-003035cd8ddc")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "MS5637"
+		(at 0 3 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "e0e9c4a2-d9ad-467e-8173-3bed077ef6e8")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" "MS563702BA03-50:MS5637_1"
+		(at 0 5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2b328095-ed25-4906-a729-dcdf62eec20a")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.mouser.ca/datasheet/2/418/5/NG_DS_MS5637-02BA03_B1-1130139.pdf"
+		(at 0 -4.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2289ddd5-96a7-4cb0-82ca-f686e59fbcaf")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1a6dfb5a-531b-4c76-a2c1-1e865f840de1")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -1.938 -1.102)
+		(end -1.938 -1.062)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "5a833d37-b1e4-4b8e-a1d9-0fd763d71348")
+	)
+	(fp_line
+		(start -1.5 -1.5)
+		(end 1.5 -1.5)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "357f39e6-9549-4fc4-8d4e-07d2df1740eb")
+	)
+	(fp_line
+		(start -1.5 1.5)
+		(end -1.5 -1.5)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "209a4b36-7a02-44d1-8cc8-7ae3026a4896")
+	)
+	(fp_line
+		(start 1.5 -1.5)
+		(end 1.5 1.5)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "89fe4d60-4a88-4a87-8804-28069a594535")
+	)
+	(fp_line
+		(start 1.5 1.5)
+		(end -1.5 1.5)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "640b8bb6-8ff2-4940-ab5c-39423ba363cb")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -2.5 0)
+		(layer "F.Fab")
+		(uuid "0fc2d499-8fda-4ae0-bb94-f2075400d977")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd roundrect
+		(at -1 -1 90)
+		(size 1 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "21fbb70a-1857-408d-bc6c-58ac439af6c2")
+	)
+	(pad "2" smd roundrect
+		(at -1 1 90)
+		(size 1 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "f8f96b7e-fd37-4ab9-87c5-fbffe8a0393c")
+	)
+	(pad "3" smd roundrect
+		(at 1 1 90)
+		(size 1 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "cfa2a33d-96d2-4f92-81ec-eb1a3cc43f6e")
+	)
+	(pad "4" smd roundrect
+		(at 1 -1 90)
+		(size 1 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(roundrect_rratio 0.25)
+		(uuid "6da229ad-7a25-430b-8ceb-e7dccbee2199")
+	)
+	(model "MS563702BA03-50.stp"
+		(offset
+			(xyz 0 0 0.9)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 180)
+		)
+	)
+)

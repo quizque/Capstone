@@ -1,0 +1,9 @@
+Manufacturer=TE Connectivity
+PartNumber=MS563702BA03-50
+PartCategory=Integrated Circuit
+PackageCategory=Other
+PinCount=4
+Version=1.1
+Released=2016-06-23 10:03:29
+Downloaded=2024-03-19 01:37:08
+3D=Y
