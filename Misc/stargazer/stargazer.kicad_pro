@@ -371,7 +371,7 @@
     },
     "net_format_name": "",
     "page_layout_descr_file": "",
-    "plot_directory": "",
+    "plot_directory": "plot/",
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",
     "spice_model_current_sheet_as_root": true,
@@ -385,6 +385,22 @@
     [
       "a232d2e9-9a56-4311-b00b-a3ecc9fa3c35",
       "Root"
+    ],
+    [
+      "9832d441-ed1d-48ed-861d-812aa37785df",
+      "Power Mangement"
+    ],
+    [
+      "ea4cbe76-42aa-41e2-8422-e52b3a019054",
+      "Microcontroller"
+    ],
+    [
+      "68242797-2fb9-4ba3-8215-46041b086117",
+      "Sensors and Transceivers"
+    ],
+    [
+      "9770c62d-b48c-438c-afca-51085289b5ff",
+      "USB Port"
     ]
   ],
   "text_variables": {}

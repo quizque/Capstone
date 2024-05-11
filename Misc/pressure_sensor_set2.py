@@ -1,18 +1,25 @@
 import machine
-from time import sleep
+from time import sleep, ticks_us
+from bmp280 import *
 
 # Create I2C object
 i2c = machine.I2C(0, scl=machine.Pin(17), sda=machine.Pin(16))
-
 # Print out any addresses found
 devices = i2c.scan()
 print(devices)
+bmp = BMP280(i2c, 0x77)
+
+
+bmp.temp_os = BMP280_TEMP_OS_2
+bmp.press_os = BMP280_PRES_OS_16
+bmp.iir = BMP280_IIR_FILTER_OFF
+
 
 if devices:
     for d in devices:
         print(hex(d))
         
-exit(0)
+(0)
 
 def reg_write(i2c, addr, reg, data):
     """
@@ -41,10 +48,28 @@ def reg_read(i2c, addr, reg, nbytes=1):
     
     return data
 
-base_height = 1004.2
+def get_pressure():
+    return (float((int.from_bytes(reg_read(i2c, 0x5d, 0x2A), 'big')<<16) | (int.from_bytes(reg_read(i2c, 0x5d, 0x29), 'big')<<8) | (int.from_bytes(reg_read(i2c, 0x5d, 0x28), 'big')<<0))/4096)
+
+def get_height(press):
+    rslt = press
+    relative_height = 145366.45 * (1 - (rslt/1013.25)**(0.190284)) * 0.3048
+    return relative_height
+
+#print(reg_read(i2c, 0x77, 0x0F))
+
+#print(reg_write(i2c, 0x5d, 0x20, 0b11000100))
+
+
+#base = get_height(get_pressure())
+
+
+print("time,BMP390,MS8607")
+
+c_time = ticks_us()
+
+bmp.normal_measure()
 
 while True:
-    rslt = (float((int.from_bytes(reg_read(i2c, 0x5d, 0x2A), 'big')<<16) | (int.from_bytes(reg_read(i2c, 0x5d, 0x29), 'big')<<8) | (int.from_bytes(reg_read(i2c, 0x5d, 0x28), 'big')<<0))/4096)
-    relative_height = 44330 * (1 - (rslt/base_height)**(1/5.255))
-    print(f"{relative_height:0.2f}m", rslt)
-    sleep(0.2)
+    print(f"{(ticks_us()-c_time)/(10**6)},1,{bmp.pressure/100}")
+    sleep(1/25)
