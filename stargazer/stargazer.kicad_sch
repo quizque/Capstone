@@ -14,7 +14,7 @@
 	)
 	(lib_symbols)
 	(sheet
-		(at 157.48 77.47)
+		(at 157.48 88.9)
 		(size 35.56 15.24)
 		(fields_autoplaced yes)
 		(stroke
@@ -26,7 +26,7 @@
 		)
 		(uuid "68242797-2fb9-4ba3-8215-46041b086117")
 		(property "Sheetname" "Sensors and Transceivers"
-			(at 157.48 76.7584 0)
+			(at 157.48 88.1884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -35,7 +35,7 @@
 			)
 		)
 		(property "Sheetfile" "sensors_transceivers.kicad_sch"
-			(at 157.48 93.2946 0)
+			(at 157.48 104.7246 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -52,45 +52,7 @@
 		)
 	)
 	(sheet
-		(at 107.95 100.33)
-		(size 35.56 15.24)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "9770c62d-b48c-438c-afca-51085289b5ff")
-		(property "Sheetname" "USB Port"
-			(at 107.95 99.6184 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "usb_port.kicad_sch"
-			(at 107.95 116.1546 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "stargazer"
-				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35"
-					(page "5")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 107.95 77.47)
+		(at 107.95 88.9)
 		(size 35.56 15.24)
 		(fields_autoplaced yes)
 		(stroke
@@ -101,8 +63,8 @@
 			(color 0 0 0 0.0000)
 		)
 		(uuid "9832d441-ed1d-48ed-861d-812aa37785df")
-		(property "Sheetname" "Power Mangement"
-			(at 107.95 76.7584 0)
+		(property "Sheetname" "Power Mangement And MCU"
+			(at 107.95 88.1884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -111,7 +73,7 @@
 			)
 		)
 		(property "Sheetfile" "power_mangement.kicad_sch"
-			(at 107.95 93.2946 0)
+			(at 107.95 104.7246 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -123,44 +85,6 @@
 			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35"
 					(page "2")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 157.48 100.33)
-		(size 35.56 15.24)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "ea4cbe76-42aa-41e2-8422-e52b3a019054")
-		(property "Sheetname" "Microcontroller"
-			(at 157.48 99.6184 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "microcontroller.kicad_sch"
-			(at 157.48 116.1546 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "stargazer"
-				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35"
-					(page "3")
 				)
 			)
 		)
