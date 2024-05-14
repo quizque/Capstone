@@ -1790,7 +1790,7 @@
 		)
 		(symbol "KX134-1211_1_1"
 			(pin input line
-				(at -11.43 -1.27 0)
+				(at -11.43 -3.81 0)
 				(length 2.54)
 				(name "SDO/ADDR"
 					(effects
@@ -1844,7 +1844,7 @@
 				)
 			)
 			(pin input line
-				(at -11.43 -3.81 0)
+				(at -11.43 -1.27 0)
 				(length 2.54)
 				(name "SCLK/SCL"
 					(effects
@@ -3773,9 +3773,9 @@
 				)
 			)
 			(pin passive line
-				(at -12.7 1.27 0)
+				(at -12.7 -1.27 0)
 				(length 2.54)
-				(name "I/O1"
+				(name "I/O2"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -3809,9 +3809,9 @@
 				)
 			)
 			(pin passive line
-				(at -12.7 -1.27 0)
+				(at -12.7 1.27 0)
 				(length 2.54)
-				(name "I/O2"
+				(name "I/O1"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -3827,9 +3827,9 @@
 				)
 			)
 			(pin passive line
-				(at 12.7 -1.27 180)
+				(at 12.7 1.27 180)
 				(length 2.54)
-				(name "I/O2"
+				(name "I/O1"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -3863,9 +3863,9 @@
 				)
 			)
 			(pin passive line
-				(at 12.7 1.27 180)
+				(at 12.7 -1.27 180)
 				(length 2.54)
-				(name "I/O1"
+				(name "I/O2"
 					(effects
 						(font
 							(size 1.27 1.27)

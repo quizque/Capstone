@@ -8,4 +8,5 @@
   (lib (name "RFPC-SMA28-F")(type "KiCad")(uri "${KIPRJMOD}/library/RFPC-SMA28-F")(options "")(descr ""))
   (lib (name "EMPCB.SMAFSTJ.B.HT")(type "KiCad")(uri "${KIPRJMOD}/library/EMPCB.SMAFSTJ.B.HT")(options "")(descr ""))
   (lib (name "CON-SMA-EDGE-S")(type "KiCad")(uri "${KIPRJMOD}/library/CON-SMA-EDGE-S")(options "")(descr ""))
+  (lib (name "1935161")(type "KiCad")(uri "${KIPRJMOD}/library/1935161")(options "")(descr ""))
 )
