@@ -6497,7 +6497,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 223.2152 92.71 0)
 			(effects
 				(font
@@ -6531,7 +6531,7 @@
 			(uuid "c1770a28-1101-433d-9845-846b5968c09f")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C24")
 					(unit 1)
@@ -6566,7 +6566,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 153.924 176.784 90)
 			(effects
 				(font
@@ -6600,7 +6600,7 @@
 			(uuid "2b9d3a10-269e-4ca0-8400-50d0aef43c4f")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "R13")
 					(unit 1)
@@ -6666,7 +6666,7 @@
 			(uuid "048c5417-cf8c-4de1-a039-1e2801c10498")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "TP2")
 					(unit 1)
@@ -6701,7 +6701,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 50.4952 91.44 0)
 			(effects
 				(font
@@ -6735,7 +6735,7 @@
 			(uuid "86449b42-dfcb-4fdd-a81f-542e2072bb4c")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C16")
 					(unit 1)
@@ -6802,7 +6802,7 @@
 			(uuid "0c4265b5-4735-41ef-a3e5-3b167d72c8bf")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR054")
 					(unit 1)
@@ -6869,7 +6869,7 @@
 			(uuid "7bdc4375-5a02-49c7-8e4a-15fd90bec2c1")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR078")
 					(unit 1)
@@ -6936,7 +6936,7 @@
 			(uuid "b4393ed0-7c55-40ca-8680-9c7961710602")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR073")
 					(unit 1)
@@ -6971,7 +6971,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 153.924 186.944 90)
 			(effects
 				(font
@@ -7005,7 +7005,7 @@
 			(uuid "9aea488e-ebe1-4c1e-a720-c815aca93d57")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "R16")
 					(unit 1)
@@ -7072,7 +7072,7 @@
 			(uuid "7706fd36-4ff3-4638-b5bb-d9ef6bf17cd0")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR076")
 					(unit 1)
@@ -7139,7 +7139,7 @@
 			(uuid "9a36f19a-5f0f-4992-96d7-2609484aeb09")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR052")
 					(unit 1)
@@ -7174,7 +7174,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 25.0952 35.56 0)
 			(effects
 				(font
@@ -7208,7 +7208,7 @@
 			(uuid "e8126f94-f757-4c6d-8b47-9518dbc4f496")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C10")
 					(unit 1)
@@ -7275,7 +7275,7 @@
 			(uuid "dfdc562c-0e4b-4629-bfa2-e885d58ad3e9")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR048")
 					(unit 1)
@@ -7341,7 +7341,7 @@
 			(uuid "32eec6ce-3eb5-4fc9-97a5-f80d5668a8a4")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR053")
 					(unit 1)
@@ -7408,7 +7408,7 @@
 			(uuid "0c55a658-459e-4b14-b325-9b926009f6b4")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR075")
 					(unit 1)
@@ -7473,7 +7473,7 @@
 			(uuid "675072ec-0ff1-4505-9aaa-e661db795461")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR057")
 					(unit 1)
@@ -7539,7 +7539,7 @@
 			(uuid "528aae69-3faf-4f6e-b29c-74b054ffa806")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "TP4")
 					(unit 1)
@@ -7605,7 +7605,7 @@
 			(uuid "bffdfe33-720f-4d94-9ebc-edb2d1af9690")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "TP1")
 					(unit 1)
@@ -7672,7 +7672,7 @@
 			(uuid "6b27c0c1-c6f1-4518-89d9-242a541ababc")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR050")
 					(unit 1)
@@ -7739,7 +7739,7 @@
 			(uuid "a45a54f2-e220-417c-9c69-55a16cd3f835")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR041")
 					(unit 1)
@@ -7806,7 +7806,7 @@
 			(uuid "08efe260-10ad-4148-8fb7-e91cbe1a5b89")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR059")
 					(unit 1)
@@ -7873,7 +7873,7 @@
 			(uuid "6b212c4c-87fa-41c2-bd70-333705c6b65b")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR070")
 					(unit 1)
@@ -7978,7 +7978,7 @@
 			(uuid "c4d44ab5-b916-40c6-a7de-fe97257655b7")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "U13")
 					(unit 1)
@@ -8077,7 +8077,7 @@
 			(uuid "e7c37c93-b2a1-467e-8ca7-fa5a10a982b0")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "U11")
 					(unit 1)
@@ -8143,7 +8143,7 @@
 			(uuid "16888867-3ac5-46b7-af53-72aa7b08b208")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR065")
 					(unit 1)
@@ -8210,7 +8210,7 @@
 			(uuid "c042c94c-e0c5-4226-9b4c-778fbcdfcadf")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR061")
 					(unit 1)
@@ -8277,7 +8277,7 @@
 			(uuid "d603c832-3a21-428a-a6a5-7cc68c94f422")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR060")
 					(unit 1)
@@ -8344,7 +8344,7 @@
 			(uuid "2a406ffa-6ba2-4e2c-aa8c-0d1ddec5a52d")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR077")
 					(unit 1)
@@ -8410,7 +8410,7 @@
 			(uuid "4552464e-0931-403f-8d19-077bf417363d")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR046")
 					(unit 1)
@@ -8477,7 +8477,7 @@
 			(uuid "d7aea5aa-ab2a-478b-87a0-c9f8d3c67d53")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR066")
 					(unit 1)
@@ -8600,7 +8600,7 @@
 			(uuid "3b090b12-9fea-40db-82a7-7583cb893f33")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "U8")
 					(unit 1)
@@ -8667,7 +8667,7 @@
 			(uuid "41974d94-6ec7-46b0-bcd0-4c0724561bd5")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR074")
 					(unit 1)
@@ -8702,7 +8702,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 246.0752 59.69 0)
 			(effects
 				(font
@@ -8736,7 +8736,7 @@
 			(uuid "45f1cc30-98dd-4c0f-8209-2c045a865082")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C27")
 					(unit 1)
@@ -8824,7 +8824,7 @@
 			(uuid "0b6b050a-2f31-4159-a8d4-b34055c51fbd")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "U7")
 					(unit 1)
@@ -8891,7 +8891,7 @@
 			(uuid "e22a9abb-cd33-42b1-9296-4e79b6c42fb6")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR045")
 					(unit 1)
@@ -8957,7 +8957,7 @@
 			(uuid "7fe204e6-0041-4043-b5a1-4e2aaca8bf6e")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR042")
 					(unit 1)
@@ -9024,7 +9024,7 @@
 			(uuid "1478a643-7b96-4ffc-a91a-eb96521ca198")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR079")
 					(unit 1)
@@ -9091,7 +9091,7 @@
 			(uuid "572e36ec-1bb1-42c6-89fa-cb6b7e784527")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "R19")
 					(unit 1)
@@ -9158,7 +9158,7 @@
 			(uuid "a53f24fb-eeaf-401e-b7a2-95da11ff926d")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR056")
 					(unit 1)
@@ -9224,7 +9224,7 @@
 			(uuid "3683ad99-dcc3-46bc-a1cb-66b7d9e0e4b0")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR058")
 					(unit 1)
@@ -9291,7 +9291,7 @@
 			(uuid "2dbc1ddb-849c-42e2-9b6a-ff990ab87ca6")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR047")
 					(unit 1)
@@ -9326,7 +9326,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 126.6952 95.25 0)
 			(effects
 				(font
@@ -9360,7 +9360,7 @@
 			(uuid "cea51dc6-2170-4494-9754-4390cefdf0d0")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C18")
 					(unit 1)
@@ -9427,7 +9427,7 @@
 			(uuid "0c0f7bbc-bfe7-4f9a-9e41-22eb7d3079ad")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR051")
 					(unit 1)
@@ -9462,7 +9462,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 224.4852 30.48 0)
 			(effects
 				(font
@@ -9496,7 +9496,7 @@
 			(uuid "8e038995-cb7d-4fd7-961d-cc356ebdf0dc")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C25")
 					(unit 1)
@@ -9531,7 +9531,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 35.2552 157.48 0)
 			(effects
 				(font
@@ -9565,7 +9565,7 @@
 			(uuid "0aeb7216-dcd3-4756-ab87-ac881843dd3c")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C12")
 					(unit 1)
@@ -9631,7 +9631,7 @@
 			(uuid "4bb15626-b9f3-4f4a-8078-9b57cef5ff69")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR039")
 					(unit 1)
@@ -9666,7 +9666,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 230.8352 92.71 0)
 			(effects
 				(font
@@ -9700,7 +9700,7 @@
 			(uuid "0000904f-a09f-4ef6-aaa2-dde454eb43c0")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C26")
 					(unit 1)
@@ -9767,7 +9767,7 @@
 			(uuid "cf07c7ec-13f6-4092-9a3b-b469d28efcc6")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "R9")
 					(unit 1)
@@ -9832,7 +9832,7 @@
 			(uuid "d3cb5535-11c5-4083-92fc-b154ada55e5f")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR071")
 					(unit 1)
@@ -9897,7 +9897,7 @@
 			(uuid "99f66163-c812-4960-9bf3-194a616052f5")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR067")
 					(unit 1)
@@ -9932,7 +9932,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 37.7952 35.56 0)
 			(effects
 				(font
@@ -9966,7 +9966,7 @@
 			(uuid "28dc352a-b850-4686-8fd4-ef89019ecc30")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C13")
 					(unit 1)
@@ -10033,7 +10033,7 @@
 			(uuid "5f65b0f8-93d6-4718-a36d-27c31733476c")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR043")
 					(unit 1)
@@ -10100,7 +10100,7 @@
 			(uuid "5cc20811-6237-4136-83cf-aa6bfa09b5a4")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "R18")
 					(unit 1)
@@ -10165,7 +10165,7 @@
 			(uuid "ca186386-a8c6-42f9-8329-929d4c6be190")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR069")
 					(unit 1)
@@ -10231,7 +10231,7 @@
 			(uuid "d7df0412-446a-4865-8266-c84954b59430")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR072")
 					(unit 1)
@@ -10298,7 +10298,7 @@
 			(uuid "bfda0723-bbb2-4d0f-aa70-e9b1cc91b13a")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR064")
 					(unit 1)
@@ -10333,7 +10333,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 41.6052 157.48 0)
 			(effects
 				(font
@@ -10367,7 +10367,7 @@
 			(uuid "25a63c09-9f52-4937-8b08-11c8270c5e10")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C14")
 					(unit 1)
@@ -10402,7 +10402,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 153.924 171.704 90)
 			(effects
 				(font
@@ -10436,7 +10436,7 @@
 			(uuid "7cd0969c-1149-4eaf-a4f4-06869d8aa320")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "R12")
 					(unit 1)
@@ -10501,7 +10501,7 @@
 			(uuid "ec233f84-4783-4308-87d2-c2d1bbeed50f")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR068")
 					(unit 1)
@@ -10566,7 +10566,7 @@
 			(uuid "8ca67756-577e-442f-bbed-fd0dff7d7626")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR044")
 					(unit 1)
@@ -10601,7 +10601,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 31.4452 35.56 0)
 			(effects
 				(font
@@ -10635,7 +10635,7 @@
 			(uuid "eff4af17-c8f9-4cb2-b050-3792c5a0e4c8")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C11")
 					(unit 1)
@@ -10670,7 +10670,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 129.2352 154.94 0)
 			(effects
 				(font
@@ -10704,7 +10704,7 @@
 			(uuid "0b5d9dfe-8ea9-4332-ae1f-10a0b2fa9b3b")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C19")
 					(unit 1)
@@ -10771,7 +10771,7 @@
 			(uuid "f34cfeae-3a53-477e-a7c8-bc27cadc893a")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "R17")
 					(unit 1)
@@ -10806,7 +10806,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 141.9352 31.75 0)
 			(effects
 				(font
@@ -10840,7 +10840,7 @@
 			(uuid "900e9508-09af-4a06-9d15-acc13af54ac9")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C22")
 					(unit 1)
@@ -10875,7 +10875,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 153.924 181.864 90)
 			(effects
 				(font
@@ -10909,7 +10909,7 @@
 			(uuid "8cbfe399-bb09-4ddf-b495-536e88845584")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "R14")
 					(unit 1)
@@ -10975,7 +10975,7 @@
 			(uuid "32fb581a-4bec-4b97-8825-2ab0845f2e9b")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "TP5")
 					(unit 1)
@@ -11010,7 +11010,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 216.8652 30.48 0)
 			(effects
 				(font
@@ -11044,7 +11044,7 @@
 			(uuid "274c65c1-06aa-44ce-b958-51e0dd093a63")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C23")
 					(unit 1)
@@ -11110,7 +11110,7 @@
 			(uuid "afc97454-cbcc-4106-b8c2-8d12a679dfb4")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "TP3")
 					(unit 1)
@@ -11177,7 +11177,7 @@
 			(uuid "4c26bc14-93a4-4490-8604-b11d267d5574")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR040")
 					(unit 1)
@@ -11244,7 +11244,7 @@
 			(uuid "79b55467-de08-4ba0-a130-005b061d423a")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR063")
 					(unit 1)
@@ -11279,7 +11279,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 44.1452 91.44 0)
 			(effects
 				(font
@@ -11313,7 +11313,7 @@
 			(uuid "85841266-143b-41b8-b361-3a888a873e7e")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C15")
 					(unit 1)
@@ -11380,7 +11380,7 @@
 			(uuid "3149940e-156b-4970-aae4-00a6ea1343aa")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR062")
 					(unit 1)
@@ -11447,7 +11447,7 @@
 			(uuid "7a0e0a00-55d0-47b0-9094-b009d63c216f")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR049")
 					(unit 1)
@@ -11546,7 +11546,7 @@
 			(uuid "ef2837fa-227c-4d43-bf2f-217d5f7384f2")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "U12")
 					(unit 1)
@@ -11615,7 +11615,7 @@
 			(uuid "72eff002-d454-408f-8d5d-9a6e6315d3ca")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "J5")
 					(unit 1)
@@ -11710,7 +11710,7 @@
 			(uuid "33652796-deec-4167-a848-22de37c8e288")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "U10")
 					(unit 1)
@@ -11745,7 +11745,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 134.3152 95.25 0)
 			(effects
 				(font
@@ -11779,7 +11779,7 @@
 			(uuid "c47d83c1-a4c4-434c-b0ad-52a5d5ef74ce")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C21")
 					(unit 1)
@@ -11814,7 +11814,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 153.924 184.404 90)
 			(effects
 				(font
@@ -11848,7 +11848,7 @@
 			(uuid "8b37dfdb-6986-4618-9098-2969f9b2203b")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "R15")
 					(unit 1)
@@ -11883,7 +11883,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 153.924 169.164 90)
 			(effects
 				(font
@@ -11917,7 +11917,7 @@
 			(uuid "0f5d9f90-ddbf-4afe-8e54-b81a62751af7")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "R11")
 					(unit 1)
@@ -11952,7 +11952,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 134.3152 31.75 0)
 			(effects
 				(font
@@ -11986,7 +11986,7 @@
 			(uuid "378a26aa-4b40-4567-b9b8-b818f891eeb5")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C20")
 					(unit 1)
@@ -12021,7 +12021,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 122.8852 154.94 0)
 			(effects
 				(font
@@ -12055,7 +12055,7 @@
 			(uuid "0dfa6e98-f35f-45c1-9394-508dc575ace1")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C17")
 					(unit 1)
@@ -12147,7 +12147,7 @@
 			(uuid "21350bb5-a4cd-407c-89cf-5000af1573b1")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "J6")
 					(unit 1)
@@ -12213,7 +12213,7 @@
 			(uuid "59456f7f-378a-4dbb-bd7f-4c8ff82206a3")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR055")
 					(unit 1)
@@ -12325,7 +12325,7 @@
 			(uuid "da3a533b-6e48-481e-9572-9cd459af0030")
 		)
 		(instances
-			(project "stargazer"
+			(project "pcb2blender_tmp"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "U9")
 					(unit 1)
