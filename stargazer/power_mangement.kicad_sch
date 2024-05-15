@@ -5699,6 +5699,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "RC0402JR-0710KL"
+			(at 104.14 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "6513f974-c246-4a2c-895d-994f49a9853d")
 		)
@@ -5706,7 +5715,7 @@
 			(uuid "1772e4c6-4bb6-4f12-a4bd-a416c8ab1d9a")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "R2")
 					(unit 1)
@@ -5771,7 +5780,7 @@
 			(uuid "417f2761-8e66-4152-b195-e9d5d0300f6a")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR08")
 					(unit 1)
@@ -5837,7 +5846,7 @@
 			(uuid "6b61f972-ff27-4800-9f59-f3a6ccd30315")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR012")
 					(unit 1)
@@ -5899,6 +5908,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "GRM155R60J106ME05J"
+			(at 198.12 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "40dafe4e-26e6-4480-93f3-75a5536ab308")
 		)
@@ -5906,7 +5924,7 @@
 			(uuid "12ea6144-d909-4d30-83fa-fcfbca54a378")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "C7")
 					(unit 1)
@@ -5966,6 +5984,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "USBLC6-2SC6"
+			(at 96.52 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "3"
 			(uuid "5aec3caa-e2f1-4071-8b3a-adb4d26b6d00")
 		)
@@ -5985,7 +6012,7 @@
 			(uuid "aed5f3c4-7341-4a57-8c36-814fe7d841a1")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "U3")
 					(unit 1)
@@ -6047,6 +6074,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "SML-LX1206SRC-TR"
+			(at 219.71 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "b6464142-b593-465b-a1ec-f72109cdad67")
 		)
@@ -6054,7 +6090,7 @@
 			(uuid "decbc351-d3fe-4145-8f7f-beace5dc9a7e")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "D4")
 					(unit 1)
@@ -6114,6 +6150,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "10118193-0001LF"
+			(at 66.04 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "5d0de3e1-0585-4a54-9f20-e7c4173b9174")
 		)
@@ -6133,7 +6178,7 @@
 			(uuid "2df5b844-27c3-4333-aa78-7d39f3bb4c6e")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "J2")
 					(unit 1)
@@ -6200,7 +6245,7 @@
 			(uuid "f766bbd9-233d-4cd5-8e62-f5e8198afed9")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR05")
 					(unit 1)
@@ -6267,7 +6312,7 @@
 			(uuid "c93113a4-937b-49c8-9933-f8c1797d8eba")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR015")
 					(unit 1)
@@ -6329,6 +6374,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "GRM155R60J106ME05J"
+			(at 224.79 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "7c239734-2126-41ad-82a8-e21070e70bd3")
 		)
@@ -6336,7 +6390,7 @@
 			(uuid "c0dec15d-c379-4e4f-b508-c8c90b11b746")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "C8")
 					(unit 1)
@@ -6402,7 +6456,7 @@
 			(uuid "9b2070ba-d564-4253-a48b-2e67db0fcf3f")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR019")
 					(unit 1)
@@ -6467,7 +6521,7 @@
 			(uuid "b072aeb9-acee-4fb5-9566-995c0bce47ae")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR038")
 					(unit 1)
@@ -6533,7 +6587,7 @@
 			(uuid "1b61503a-6b5d-4ec9-bbc0-cb236449e550")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR013")
 					(unit 1)
@@ -6600,7 +6654,7 @@
 			(uuid "37c6af19-6808-4ffe-91f1-24e34dc81f36")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR027")
 					(unit 1)
@@ -6662,6 +6716,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "GRM155R60J106ME05J"
+			(at 30.48 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "cc621be6-80e2-49d4-8d23-da76dd67ba28")
 		)
@@ -6669,7 +6732,7 @@
 			(uuid "5cca3130-1a7d-46c2-92e6-b904f8d68560")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "C1")
 					(unit 1)
@@ -6736,7 +6799,7 @@
 			(uuid "32368eeb-62fd-4493-930b-78108144eee7")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR09")
 					(unit 1)
@@ -6799,6 +6862,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" ""
+			(at 143.51 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "ff1c7511-fa0f-4cd6-97d0-39d01374a7e7")
 		)
@@ -6806,7 +6878,7 @@
 			(uuid "3e15c4ac-0747-43cd-9d6c-47edfa093ac8")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "J3")
 					(unit 1)
@@ -6868,6 +6940,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "GRM155R60J106ME05J"
+			(at 58.42 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "a8bc78f1-ddf7-4e4b-998e-92cb374fff6f")
 		)
@@ -6875,7 +6956,7 @@
 			(uuid "f5f58ba9-0ef0-4157-8d73-914b8583a357")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "C3")
 					(unit 1)
@@ -6937,6 +7018,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "RC0402FR-07470RL"
+			(at 190.5 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "0953a3fb-db1c-4da9-a842-47efd2507e8a")
 		)
@@ -6944,7 +7034,7 @@
 			(uuid "43159368-2e62-4c95-b606-ac8cb0827e89")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "R7")
 					(unit 1)
@@ -7011,7 +7101,7 @@
 			(uuid "a85dcabd-7795-4466-96af-d13279be0874")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR017")
 					(unit 1)
@@ -7078,7 +7168,7 @@
 			(uuid "15091a51-30c3-4855-96b8-44614aa4fdd0")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR035")
 					(unit 1)
@@ -7140,6 +7230,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "RMCF0402ZT0R00"
+			(at 116.84 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "7f1515f4-5cc9-4cc6-b460-6a62628a6bb2")
 		)
@@ -7147,7 +7246,7 @@
 			(uuid "4f6c52da-5af3-4bb4-9778-4d1876123585")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "R4")
 					(unit 1)
@@ -7214,7 +7313,7 @@
 			(uuid "c3efdd5d-b8db-4143-8f70-46678b447a10")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR06")
 					(unit 1)
@@ -7279,7 +7378,7 @@
 			(uuid "689b155d-60f4-4edd-8a6b-fd7013682cb8")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR023")
 					(unit 1)
@@ -7346,7 +7445,7 @@
 			(uuid "6de63491-6214-4715-9d07-348b802c7b6f")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR021")
 					(unit 1)
@@ -7406,6 +7505,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "LM66100DCKR"
+			(at 180.34 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "166cab6d-d972-4ed0-a2bb-f0bb18ac8656")
 		)
@@ -7422,7 +7530,7 @@
 			(uuid "38b2f159-ad7e-4a72-a468-9ba79adcae98")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "U5")
 					(unit 1)
@@ -7488,7 +7596,7 @@
 			(uuid "39110ff5-90d1-4039-b0de-6a41ae54d827")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR016")
 					(unit 1)
@@ -7554,7 +7662,7 @@
 			(uuid "cb5d5a09-8af7-4d17-9aef-37b8d92224da")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR025")
 					(unit 1)
@@ -7614,6 +7722,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "RC0402FR-073K3L"
+			(at 125.73 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "fd922b82-77b9-41cc-b139-a01e8563d441")
 		)
@@ -7621,7 +7738,7 @@
 			(uuid "0c390339-f920-4ccb-a02a-86c586bcfb73")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "R6")
 					(unit 1)
@@ -7687,7 +7804,7 @@
 			(uuid "b5c66025-00c3-4a54-bb15-d484aefa0979")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR026")
 					(unit 1)
@@ -7754,7 +7871,7 @@
 			(uuid "1cbd3dfd-01d3-4ffb-8b31-8c0594866096")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR07")
 					(unit 1)
@@ -7816,6 +7933,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "1935161"
+			(at 240.03 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "d49e263b-6fbd-4eb2-a509-23659d9d6146")
 		)
@@ -7823,7 +7949,7 @@
 			(uuid "3fea7083-2f7b-4d83-b102-472f6a4868b6")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "J4")
 					(unit 1)
@@ -7878,6 +8004,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 45.72 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "digikeynumber" " ESP32-C3-WROOM-02-N4 "
 			(at 45.72 162.56 0)
 			(effects
 				(font
@@ -7944,7 +8079,7 @@
 			(uuid "13a2ee2f-2c12-42c2-b541-a7be71bc13bb")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "U1")
 					(unit 1)
@@ -8010,7 +8145,7 @@
 			(uuid "fa99e7d1-667d-407a-a55c-0102e633bc23")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR020")
 					(unit 1)
@@ -8076,7 +8211,7 @@
 			(uuid "ae87ed93-7658-427c-b30a-a5b52fd23843")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR029")
 					(unit 1)
@@ -8142,7 +8277,7 @@
 			(uuid "83b6f512-4ac2-462a-8eae-96a94f5c568a")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR024")
 					(unit 1)
@@ -8204,6 +8339,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "RC0402FR-072K8L"
+			(at 50.8 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "d858c726-f0a7-4359-bb44-999407b03cc6")
 		)
@@ -8211,7 +8355,7 @@
 			(uuid "81aeb60f-36b7-40d7-b702-da7fbdc2da93")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "R1")
 					(unit 1)
@@ -8273,6 +8417,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "GRM155R60J106ME05J"
+			(at 190.5 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "5a99146a-ce6d-4631-88e6-13f0270c7328")
 		)
@@ -8280,7 +8433,7 @@
 			(uuid "6c8f3428-49e7-4866-b814-172147aecca7")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "C6")
 					(unit 1)
@@ -8340,6 +8493,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "LM66100DCKR"
+			(at 180.34 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "7d496da1-17e9-4301-bfab-c1ecd41e06ab")
 		)
@@ -8356,7 +8518,7 @@
 			(uuid "cdbdb241-454c-4ffd-a7ef-156bc6cc58f5")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "U4")
 					(unit 1)
@@ -8418,6 +8580,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "SML-LX1206SRC-TR"
+			(at 205.74 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "860e9397-0448-447c-9028-01142a05a770")
 		)
@@ -8425,7 +8596,7 @@
 			(uuid "74e32c97-a2a5-44e7-b42b-334faf6fdbb8")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "D2")
 					(unit 1)
@@ -8487,6 +8658,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "CL05A105MQ5NNNC"
+			(at 104.14 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "adc8c6e0-1147-4729-9b31-70b9dd913f27")
 		)
@@ -8494,7 +8674,7 @@
 			(uuid "8ea5122a-38d4-4487-8bf0-e9dc3e127e3d")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "C5")
 					(unit 1)
@@ -8556,6 +8736,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "GRM155R60J106ME05J"
+			(at 232.41 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "5067daa7-9c10-4aee-b3cf-1b4bf4c0c8fc")
 		)
@@ -8563,7 +8752,7 @@
 			(uuid "9442d5ca-d37e-4045-bda6-0ef653a6a143")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "C9")
 					(unit 1)
@@ -8629,7 +8818,7 @@
 			(uuid "88f2c726-b3f2-443f-90b1-b19b2011a663")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR01")
 					(unit 1)
@@ -8696,7 +8885,7 @@
 			(uuid "3bc5a670-2a54-4738-a02b-812fc085b751")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#FLG02")
 					(unit 1)
@@ -8763,7 +8952,7 @@
 			(uuid "e902cb3a-d020-4b3e-81df-12cf32891e7c")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR02")
 					(unit 1)
@@ -8830,7 +9019,7 @@
 			(uuid "4ed7303a-6c22-4012-954b-37119b8ebef2")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR030")
 					(unit 1)
@@ -8892,6 +9081,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "SML-LX1206SRC-TR"
+			(at 190.5 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "0243bd76-de51-4600-ab58-e3c55ccebd9c")
 		)
@@ -8899,7 +9097,7 @@
 			(uuid "71b70a32-4489-45f6-90c2-1bb31f2b3f68")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "D1")
 					(unit 1)
@@ -8963,6 +9161,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "MCP73831T-2ACI/OT"
+			(at 63.5 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "cd69e2ce-4780-4f87-8f16-fdddff7b37df")
 		)
@@ -8979,7 +9186,7 @@
 			(uuid "674d407c-7e19-4c3c-8338-93ad4d3bb6aa")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "U2")
 					(unit 1)
@@ -9041,6 +9248,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "CL05A104KA5NNNC"
+			(at 38.1 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "960d7b07-6f8d-414b-8ca5-78e3c6be3654")
 		)
@@ -9048,7 +9264,7 @@
 			(uuid "ecb9a7d5-b3bc-4ab5-8db8-0a7df03b8093")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "C2")
 					(unit 1)
@@ -9115,7 +9331,7 @@
 			(uuid "e643e9c2-0e3c-4996-b3b7-73a70ac3bfd4")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR034")
 					(unit 1)
@@ -9180,7 +9396,7 @@
 			(uuid "c1f69cae-3592-4404-b3d1-ee2f2484cd57")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR014")
 					(unit 1)
@@ -9245,7 +9461,7 @@
 			(uuid "2edc2087-c9af-47ca-b747-d9876bee62a0")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR031")
 					(unit 1)
@@ -9307,6 +9523,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "RMCF0402ZT0R00"
+			(at 116.84 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "563092a9-ced2-4ac4-a0b1-b41acf63432e")
 		)
@@ -9314,7 +9539,7 @@
 			(uuid "6b5ca6ca-6bd8-4fd3-9c3a-f5b78dbb691d")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "R3")
 					(unit 1)
@@ -9379,7 +9604,7 @@
 			(uuid "51401f84-8e16-4be6-91fe-c25ad7744978")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR037")
 					(unit 1)
@@ -9440,6 +9665,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "AP2112K-3.3TRG1"
+			(at 212.09 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "3"
 			(uuid "0cb9e953-e979-4971-9973-f81687044bb3")
 		)
@@ -9456,7 +9690,7 @@
 			(uuid "984dc5b0-9f9b-4633-bb28-b8d316f841cc")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "U6")
 					(unit 1)
@@ -9516,6 +9750,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "RC0402FR-073K3L"
+			(at 116.84 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "c7d23f38-e849-4cc0-9009-daf799a497c8")
 		)
@@ -9523,7 +9766,7 @@
 			(uuid "38562208-aa40-4209-9dc6-cdc3e1281edd")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "R5")
 					(unit 1)
@@ -9585,6 +9828,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "JS202011SCQN"
+			(at 238.76 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "3"
 			(uuid "966e3781-d672-42a7-a608-9569726ad78d")
 		)
@@ -9604,7 +9856,7 @@
 			(uuid "5550645a-eae7-4b1e-8634-a30573540112")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "SW1")
 					(unit 1)
@@ -9669,7 +9921,7 @@
 			(uuid "e1417397-3725-4320-992c-8cac81c7da39")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR022")
 					(unit 1)
@@ -9734,7 +9986,7 @@
 			(uuid "bc593126-3e82-48c3-ba68-016a4a872cb0")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR03")
 					(unit 1)
@@ -9796,6 +10048,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "RC0402FR-07470RL"
+			(at 205.74 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "e65fe611-75a6-4e58-893d-dd8c37a13648")
 		)
@@ -9803,7 +10064,7 @@
 			(uuid "0f5f835d-5598-4b2d-84a5-6acde42320e3")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "R8")
 					(unit 1)
@@ -9869,7 +10130,7 @@
 			(uuid "442a1747-a0a6-4b5a-b02e-7d7fa1c6fcbb")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR011")
 					(unit 1)
@@ -9936,7 +10197,7 @@
 			(uuid "c796d5ed-100f-495c-90d8-310a811990c2")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR032")
 					(unit 1)
@@ -9996,6 +10257,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "1935161"
+			(at 26.67 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b4e9edf3-2bed-40d3-b650-376e1a1e0f92")
 		)
@@ -10003,7 +10273,7 @@
 			(uuid "cba35659-a61e-46f1-8876-728b983ffef1")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "J1")
 					(unit 1)
@@ -10069,7 +10339,7 @@
 			(uuid "935ddd3f-bc95-4a02-a4e9-8aca8d922bf5")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR036")
 					(unit 1)
@@ -10131,6 +10401,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "GRM155R60J106ME05J"
+			(at 90.17 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "b510a88c-f760-40c6-af06-3de691d4f2f9")
 		)
@@ -10138,7 +10417,7 @@
 			(uuid "abb17e0d-9476-4e87-bca8-a9e10ab84436")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "C4")
 					(unit 1)
@@ -10204,7 +10483,7 @@
 			(uuid "d02dab5c-0b38-418e-a852-c7fe2ca5e783")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR028")
 					(unit 1)
@@ -10271,7 +10550,7 @@
 			(uuid "5eac4f8a-352f-4d06-9cd1-ea04ee154603")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR04")
 					(unit 1)
@@ -10333,6 +10612,15 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" "RC0402FR-07470RL"
+			(at 219.71 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "f04ed02c-396d-40c9-86fe-fef7b4399a41")
 		)
@@ -10340,7 +10628,7 @@
 			(uuid "b229b28c-89d1-4a04-ab51-604b80d76476")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "R10")
 					(unit 1)
@@ -10407,7 +10695,7 @@
 			(uuid "79a6f8d0-14ae-43e5-bc01-8e85119ccf00")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR010")
 					(unit 1)
@@ -10473,7 +10761,7 @@
 			(uuid "b7cb5363-e438-4899-9f0a-3f2761bc99bb")
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/9832d441-ed1d-48ed-861d-812aa37785df"
 					(reference "#PWR018")
 					(unit 1)

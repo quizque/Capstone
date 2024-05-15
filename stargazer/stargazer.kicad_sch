@@ -151,8 +151,17 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" ""
+			(at 109.22 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35"
 					(reference "H2")
 					(unit 1)
@@ -215,8 +224,17 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" ""
+			(at 109.22 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35"
 					(reference "H4")
 					(unit 1)
@@ -279,8 +297,17 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" ""
+			(at 109.22 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35"
 					(reference "H1")
 					(unit 1)
@@ -343,8 +370,17 @@
 				(hide yes)
 			)
 		)
+		(property "digikeynumber" ""
+			(at 109.22 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35"
 					(reference "H3")
 					(unit 1)
@@ -383,7 +419,7 @@
 			)
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35"
 					(page "4")
 				)
@@ -421,7 +457,7 @@
 			)
 		)
 		(instances
-			(project "pcb2blender_tmp"
+			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35"
 					(page "2")
 				)
