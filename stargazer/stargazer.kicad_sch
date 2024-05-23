@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "Stargazer")
-		(date "2024-04-02")
-		(rev "1")
+		(date "2024-05-22")
+		(rev "B")
 		(company "Designed for UWinSat capstone")
 		(comment 1 "UWindsor Rocketry Club")
 		(comment 4 "Designer: Nick Coombe")
@@ -421,7 +421,7 @@
 		(instances
 			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35"
-					(page "4")
+					(page "3")
 				)
 			)
 		)
