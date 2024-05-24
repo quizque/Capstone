@@ -5,108 +5,6 @@
 	(uuid "fa6b7a47-d14d-4223-9be4-eb12b43fc0f0")
 	(paper "A4")
 	(lib_symbols
-		(symbol "Connector:TestPoint"
-			(pin_numbers hide)
-			(pin_names
-				(offset 0.762) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "TP"
-				(at 0 6.858 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "TestPoint"
-				(at 0 5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 5.08 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 5.08 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "test point"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "test point tp"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Pin* Test*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "TestPoint_0_1"
-				(circle
-					(center 0 3.302)
-					(radius 0.762)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "TestPoint_1_1"
-				(pin passive line
-					(at 0 0 90)
-					(length 2.54)
-					(name "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Device:C"
 			(pin_numbers hide)
 			(pin_names
@@ -3790,16 +3688,6 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 142.24) (xy 247.65 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0553161d-38f8-440c-89f5-4d9b0efd0b27")
-	)
-	(wire
-		(pts
 			(xy 144.78 167.64) (xy 144.78 185.42)
 		)
 		(stroke
@@ -4310,16 +4198,6 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 157.48) (xy 212.09 157.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4c9ec505-d48e-43ee-8919-6e3486a9f718")
-	)
-	(wire
-		(pts
 			(xy 40.64 148.59) (xy 34.29 148.59)
 		)
 		(stroke
@@ -4377,26 +4255,6 @@
 			(type default)
 		)
 		(uuid "52c6fc60-5219-4eb9-a38e-f396a2e7e86f")
-	)
-	(wire
-		(pts
-			(xy 210.82 153.67) (xy 212.09 153.67)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5440455a-149e-449c-ba0a-e3660bba3e3d")
-	)
-	(wire
-		(pts
-			(xy 246.38 146.05) (xy 247.65 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "54a0c35a-c6cd-4853-a7bd-6d8b6e830cf3")
 	)
 	(wire
 		(pts
@@ -4920,16 +4778,6 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 149.86) (xy 212.09 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "97475984-09fa-4c47-8cf4-ab62a825542d")
-	)
-	(wire
-		(pts
 			(xy 128.27 146.05) (xy 121.92 146.05)
 		)
 		(stroke
@@ -5057,16 +4905,6 @@
 			(type default)
 		)
 		(uuid "a2493ffb-0ea2-486d-b3a2-26a7012bb11c")
-	)
-	(wire
-		(pts
-			(xy 210.82 142.24) (xy 212.09 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a3a89a80-e31c-47a5-b66c-5551160fdbb8")
 	)
 	(wire
 		(pts
@@ -5357,16 +5195,6 @@
 			(type default)
 		)
 		(uuid "cfb92be6-489d-481d-b191-4e7d7cc3a9c3")
-	)
-	(wire
-		(pts
-			(xy 210.82 146.05) (xy 212.09 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d0b8f280-04f6-4a15-b36b-fafd9c88271d")
 	)
 	(wire
 		(pts
@@ -5792,50 +5620,6 @@
 			)
 		)
 	)
-	(global_label "SCK"
-		(shape input)
-		(at 210.82 142.24 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "19686ac3-c224-4098-9de1-0ea89cf58852")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 204.0853 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "SCL"
-		(shape bidirectional)
-		(at 210.82 157.48 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "1bf01771-3384-46aa-8ffd-e2eb8bbbee83")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 203.2159 157.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "SCL"
 		(shape bidirectional)
 		(at 217.17 45.72 180)
@@ -6079,28 +5863,6 @@
 		)
 	)
 	(global_label "MISO"
-		(shape input)
-		(at 210.82 149.86 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "5c4bab33-a0b9-4f49-96e2-7ed8d1f0eb98")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 203.2386 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "MISO"
 		(shape bidirectional)
 		(at 142.24 167.64 90)
 		(fields_autoplaced yes)
@@ -6212,28 +5974,6 @@
 	)
 	(global_label "SDA"
 		(shape bidirectional)
-		(at 210.82 153.67 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "9dad4762-9188-4773-84db-628453d36f15")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 203.1554 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "SDA"
-		(shape bidirectional)
 		(at 137.16 44.45 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6272,28 +6012,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "TXD_GPS"
-		(shape input)
-		(at 246.38 142.24 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "a442a0a3-7a72-45ef-a61e-ed391ab3f275")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 235.2306 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -6364,28 +6082,6 @@
 			)
 		)
 	)
-	(global_label "RXD_GPS"
-		(shape output)
-		(at 246.38 146.05 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "b3415ff8-9fc3-4574-9f62-e5d25897da04")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 234.9282 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "SCK"
 		(shape bidirectional)
 		(at 35.56 168.91 180)
@@ -6426,28 +6122,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "MOSI"
-		(shape input)
-		(at 210.82 146.05 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "e8185ad6-fb41-4f5b-93fa-6352f40ba989")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 203.2386 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -6625,81 +6299,6 @@
 			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "R14")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 212.09 146.05 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "0297aa0d-6eaf-4cf0-886f-75dd2a5fd2c9")
-		(property "Reference" "TP2"
-			(at 217.17 146.05 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "SPI MOSI"
-			(at 222.25 146.05 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
-			(at 212.09 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 212.09 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 212.09 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "digikeynumber" ""
-			(at 212.09 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "048c5417-cf8c-4de1-a039-1e2801c10498")
-		)
-		(instances
-			(project "stargazer"
-				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
-					(reference "TP2")
 					(unit 1)
 				)
 			)
@@ -7540,81 +7139,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 212.09 153.67 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "29329ddc-170b-4bab-9f8f-028d24724d7c")
-		(property "Reference" "TP4"
-			(at 217.17 153.67 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "I2C SDA"
-			(at 222.25 153.67 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
-			(at 212.09 158.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 212.09 158.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 212.09 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "digikeynumber" ""
-			(at 212.09 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "528aae69-3faf-4f6e-b29c-74b054ffa806")
-		)
-		(instances
-			(project "stargazer"
-				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
-					(reference "TP4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 49.53 92.71 0)
 		(unit 1)
@@ -7676,81 +7200,6 @@
 			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "#PWR051")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 212.09 142.24 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "2fbd168d-d933-4efe-b7f1-bc328bc203dc")
-		(property "Reference" "TP1"
-			(at 217.17 142.24 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "SPI CLK"
-			(at 222.25 142.24 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
-			(at 212.09 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 212.09 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 212.09 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "digikeynumber" ""
-			(at 212.09 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "bffdfe33-720f-4d94-9ebc-edb2d1af9690")
-		)
-		(instances
-			(project "stargazer"
-				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
-					(reference "TP1")
 					(unit 1)
 				)
 			)
@@ -8722,81 +8171,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 247.65 142.24 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "7334b3de-ccac-43d1-bdd4-17274670480d")
-		(property "Reference" "TP6"
-			(at 252.73 142.24 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "UART TXD"
-			(at 257.81 142.24 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
-			(at 247.65 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 247.65 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 247.65 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "digikeynumber" ""
-			(at 247.65 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "940813c1-c9e7-4c37-8b9a-6d47c980e4d6")
-		)
-		(instances
-			(project "stargazer"
-				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
-					(reference "TP6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 162.56 60.96 0)
 		(unit 1)
@@ -8890,7 +8264,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "RF_GPS:ublox_SAM-M8Q"
+		(property "Footprint" "1935161:ublox_SAM-M10Q"
 			(at 50.8 33.02 0)
 			(effects
 				(font
@@ -11363,81 +10737,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 212.09 157.48 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "cd478072-3a06-405c-8294-c4c5df31ecfd")
-		(property "Reference" "TP5"
-			(at 217.17 157.48 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "I2C SCL"
-			(at 222.25 157.48 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
-			(at 212.09 162.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 212.09 162.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 212.09 157.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "digikeynumber" ""
-			(at 212.09 157.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "32fb581a-4bec-4b97-8825-2ab0845f2e9b")
-		)
-		(instances
-			(project "stargazer"
-				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
-					(reference "TP5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 215.9 26.67 0)
 		(unit 1)
@@ -11510,81 +10809,6 @@
 			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "C23")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 212.09 149.86 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "d198618d-e8d5-41eb-8ede-999c3befd9c6")
-		(property "Reference" "TP3"
-			(at 217.17 149.86 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "SPI MISO"
-			(at 222.25 149.86 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
-			(at 212.09 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 212.09 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 212.09 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "digikeynumber" ""
-			(at 212.09 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "afc97454-cbcc-4106-b8c2-8d12a679dfb4")
-		)
-		(instances
-			(project "stargazer"
-				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
-					(reference "TP3")
 					(unit 1)
 				)
 			)
@@ -12712,81 +11936,6 @@
 			(project "stargazer"
 				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
 					(reference "J6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 247.65 146.05 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "fd80d191-01fa-466f-9fc1-5086f449dd83")
-		(property "Reference" "TP7"
-			(at 252.73 146.05 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "UART RXD"
-			(at 257.81 146.05 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
-			(at 247.65 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 247.65 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 247.65 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "digikeynumber" ""
-			(at 247.65 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "66fdf328-c13e-49e6-98d5-e4daed7ebcff")
-		)
-		(instances
-			(project "stargazer"
-				(path "/a232d2e9-9a56-4311-b00b-a3ecc9fa3c35/68242797-2fb9-4ba3-8215-46041b086117"
-					(reference "TP7")
 					(unit 1)
 				)
 			)
