@@ -1,134 +1,286 @@
-
-
 #include <Arduino.h>
-
-#define Serial USBSerial
+#include <SPI.h>
 #include <Wire.h>
-#include <Adafruit_LIS3MDL.h>
-#include <Adafruit_Sensor.h>
+#include <SparkFun_u-blox_GNSS_Arduino_Library.h>
 
-#include <Adafruit_SensorLab.h>
-#include <Adafruit_Sensor_Calibration.h>
+#include <SPIMemory.h>
+#include <RadioLib.h>
+#include <SD.h>
+#include <LPS.h>
+#include <LSM6.h>
+#include <LIS3MDL.h>
 
-Adafruit_LIS3MDL lis3mdl;
+#include "stargazer_constants.h"
 
-// Hard-iron calibration settings
-const float hard_iron[3] = {
-    -32.71, -7.94, -10.54};
+#define TRANSMITTER 1
 
-// Soft-iron calibration settings
-const float soft_iron[3][3] = {
-    {0.992, 0.007, 0.011},
-    {0.007, 1.011, -0.024},
-    {0.011, -0.024, 0.998}};
+#define USE_LORA
+// #define USING_SX1262
 
-const float mag_decl = -1.233;
+#define FLASH_MARKER_PRIMARY 0x8
+#define FLASH_MARKER_SECONDARY 0xC
 
-void setup()
+#ifdef USING_SX1262
+SX1262
+#else
+SX1276
+#endif
+radio = new Module(LORA_CS, LORA_IRQ, LORA_RST);
+
+SPIFlash flash(FLASH_CS);
+
+LPS ps;
+LSM6 imu;
+LIS3MDL mag;
+
+SFE_UBLOX_GNSS gnss;
+
+void led_panic()
 {
-  // Open serial communications and wait for port to open:
-  // Serial0.begin(9600);
-  // Serial.begin(9600, SERIAL_8N1, 20, 21);
-  USBSerial.begin(115200);
-  pinMode(7, OUTPUT);
-  pinMode(2, OUTPUT);
-  pinMode(10, OUTPUT);
-
-  digitalWrite(7, HIGH);
-  digitalWrite(2, HIGH);
-  digitalWrite(10, HIGH);
-  // SPI.begin();
-  delay(5000);
-
-  USBSerial.print("\nReading serial 1");
-
-  // USBSerial.print("\nAAA");
-
-  Wire.begin();
-
-  Serial.println(F("Sensor Lab - IMU Calibration!"));
-
-  Serial.println("LIS3MDL compass test");
-
-  // Initialize magnetometer
-  if (!lis3mdl.begin_I2C(0x1E))
+  while (1)
   {
-    Serial.println("ERROR: Could not find magnetometer");
-    while (1)
-    {
-      delay(1000);
-    }
+    digitalWrite(LED_STATUS, LOW);
+    delay(100);
+    digitalWrite(LED_STATUS, HIGH);
+    delay(100);
   }
 }
 
+uint32_t current_flash_address = 0x0;
+const char *flash_marker = "STARGAZE";
+
+void init_flash()
+{
+  uint8_t flashData[9];
+  flash.readByteArray(0x0, &flashData[0], 8);
+
+  if (memcmp(flashData, flash_marker, 8) != 1)
+  {
+    USBSerial.println("[WARNING] Flash not initialized, setting up...");
+    flash.eraseBlock64K(0x0);
+    flash.writeByteArray(0x0, (uint8_t *)flash_marker, 8, true);
+
+    flash.writeULong(FLASH_MARKER_PRIMARY, 16);
+    flash.writeULong(FLASH_MARKER_SECONDARY, 16);
+    USBSerial.println("[INFO] Flash initialized.");
+  }
+  else
+  {
+    USBSerial.println("[INFO] Flash already initialized.");
+  }
+
+  USBSerial.println("[INFO] Getting current flash address.");
+  uint32_t primary_marker = 0x0;
+}
+
+void setup()
+{
+  ///
+  /// Setup USB serial
+  ///
+
+  USBSerial.begin(115200);
+  delay(5000);
+  USBSerial.println("[INFO] Serial started.");
+
+  ///
+  /// Setup LED
+  ///
+
+  pinMode(LED_STATUS, OUTPUT);
+  analogWrite(LED_STATUS, 125);
+  USBSerial.println("[INFO] LED started.");
+
+  ///
+  /// SPI Setup
+  ///
+
+  pinMode(FLASH_CS, OUTPUT);
+  pinMode(LORA_CS, OUTPUT);
+  pinMode(SD_CS, OUTPUT);
+
+  digitalWrite(FLASH_CS, HIGH);
+  digitalWrite(LORA_CS, HIGH);
+  digitalWrite(SD_CS, HIGH);
+
+  SPI.begin();
+
+  USBSerial.println("[INFO] SPI started.");
+
+  // Check for flash
+  flash.begin();
+  USBSerial.println("[INFO] Checking for flash.");
+  uint32_t JEDEC = flash.getJEDECID();
+  if (0xef4018 != JEDEC)
+  {
+    USBSerial.println("[ERROR] Flash not found, halting.");
+    led_panic();
+  }
+  USBSerial.println("[INFO] Flash found.");
+
+  // Check for radio
+  int state = radio.begin();
+  if (state != RADIOLIB_ERR_NONE)
+  {
+    USBSerial.print(F("[ERROR] Radio not found, code:"));
+    USBSerial.println(state);
+#ifdef USE_LORA
+    USBSerial.println("[ERROR] halting.");
+    led_panic();
+#endif
+    USBSerial.println("[WARN] Radio not found, continuing.");
+  }
+  else
+  {
+    // #ifdef USING_SX1262 & !TRANSMITTER
+    //     radio.setDio1Action(setFlag);
+    // #else
+    //     radio.setDio0Action(setFlag);
+    // #endif
+
+    USBSerial.println("[INFO] Radio found.");
+  }
+
+  // Check for SD card
+  if (!SD.begin(SD_CS))
+  {
+    USBSerial.println("[WARNING] SD card not found, continuing.");
+  }
+  else
+  {
+    USBSerial.println("[INFO] SD card found.");
+  };
+
+  ///
+  /// Setup I2C
+  ///
+
+  Wire.begin();
+  USBSerial.println("[INFO] I2C started.");
+
+  // Check Barometer
+  if (!ps.init())
+  {
+    USBSerial.println("[WARNING] Barometer not found, continuing.");
+  }
+  else
+  {
+    USBSerial.println("[INFO] Barometer found.");
+  }
+
+  // Check gyro/acc
+  if (!imu.init())
+  {
+    USBSerial.println("[WARNING] Gyro/acc not found, continuing.");
+  }
+  else
+  {
+    USBSerial.println("[INFO] IMU found.");
+  }
+
+  // Check Magnetometer
+  if (!mag.init())
+  {
+    USBSerial.println("[WARNING] Magnetometer not found, continuing.");
+  }
+  else
+  {
+    USBSerial.println("[INFO] Magnetometer found.");
+  }
+
+  ///
+  /// GPS Setup
+  ///
+
+  if (gnss.begin() == false)
+  {
+    USBSerial.println("[WARNING] GPS not found, continuing.");
+  }
+  else
+  {
+    USBSerial.println("[INFO] GPS found.");
+  }
+
+  USBSerial.println("[INFO] Initialization complete.");
+
+  ///
+  /// Device setup complete
+  ///
+
+#ifdef USE_LORA
+  radio.setFrequency(915.0);
+  radio.setBandwidth(512.0);
+  radio.setSpreadingFactor(10);
+  radio.setCodingRate(5);
+  radio.setCRC(true);
+#endif
+
+  gnss.setI2COutput(COM_TYPE_UBX);
+  gnss.saveConfigSelective(VAL_CFG_SUBSEC_IOPORT);
+  gnss.setNavigationFrequency(5);
+
+  // flash.eraseBlock64K(0x0);
+  // if (flash.writeByteArray(0x0, &flashData[0], 63, true))
+  // {
+  //   USBSerial.println("[INFO] Flash write success.");
+  // }
+  // else
+  // {
+  //   USBSerial.println("[ERROR] Flash write failed.");
+  // }
+
+  // Print first 16 bytes of flash
+  init_flash();
+
+  USBSerial.print(flash.readByte(0x12), HEX);
+  uint8_t readData[32];
+  if (flash.readByteArray(0x0, &readData[0], 32))
+  {
+    USBSerial.println("[INFO] Flash read success.");
+    for (int i = 0; i < 32; i++)
+    {
+      USBSerial.print(readData[i], HEX);
+      USBSerial.print(" ");
+    }
+    USBSerial.println();
+  }
+  else
+  {
+    USBSerial.println("[ERROR] Flash read failed.");
+  }
+}
+
+long lastTime = 0;
+
 void loop()
 {
-  // if (USBSerial.available())
-  // { // If anything comes in Serial (USB),
-  //   // USBSerial.print("USBSerial available");
-  //   Serial.write(USBSerial.read()); // read it and send it out Serial1 (pins 4 & 5)
-  // }
-
-  // if (Serial.available())
-  // {                                 // If anything comes in Serial1 (pins 4 & 5)
-  //   USBSerial.write(Serial.read()); // read it and send it out Serial (USB)
-  // }
-  // float pressure = ps.readPressureMillibars();
-  // float altitude = ps.pressureToAltitudeMeters(pressure);
-  // float temperature = ps.readTemperatureC();
-
-  // USBSerial.print("p: ");
-  // USBSerial.print(pressure);
-  // USBSerial.print(" mbar\ta: ");
-  // USBSerial.print(altitude);
-  // USBSerial.print(" m\tt: ");
-  // USBSerial.print(temperature);
-
-  static float hi_cal[3];
-  static float heading = 0;
-
-  // Get new sensor event with readings in uTesla
-  sensors_event_t event;
-  lis3mdl.getEvent(&event);
-
-  // Put raw magnetometer readings into an array
-  float mag_data[] = {event.magnetic.x,
-                      event.magnetic.y,
-                      event.magnetic.z};
-
-  // Apply hard-iron offsets
-  for (uint8_t i = 0; i < 3; i++)
-  {
-    hi_cal[i] = mag_data[i] - hard_iron[i];
-  }
-
-  // Apply soft-iron scaling
-  for (uint8_t i = 0; i < 3; i++)
-  {
-    mag_data[i] = (soft_iron[i][0] * hi_cal[0]) + (soft_iron[i][1] * hi_cal[1]) + (soft_iron[i][2] * hi_cal[2]);
-  }
-
-  // Calculate angle for heading, assuming board is parallel to
-  // the ground and  Y points toward heading.
-  heading = -1 * (atan2(mag_data[0], mag_data[1]) * 180) / M_PI +180;
-
-  // Apply magnetic declination to convert magnetic heading
-  // to geographic heading
-  // heading = heading + mag_decl;
-
-  // Convert heading to 0..360 degrees
-  // if (heading < 0)
+  // gnss.checkUblox();
+  // if (millis() - lastTime > 1000)
   // {
-  //   heading = 360;
-  // }
+  //   lastTime = millis(); // Update the timer
 
-  // Print calibrated results
-  Serial.print("[");
-  Serial.print(mag_data[0], 1);
-  Serial.print("\t");
-  Serial.print(mag_data[1], 1);
-  Serial.print("\t");
-  Serial.print(mag_data[2], 1);
-  Serial.print("] Heading: ");
-  Serial.println(heading, 2);
+  //   long latitude = gnss.getLatitude();
+  //   USBSerial.print(F("Lat: "));
+  //   USBSerial.print(latitude);
+
+  //   long longitude = gnss.getLongitude();
+  //   USBSerial.print(F(" Long: "));
+  //   USBSerial.print(longitude);
+  //   USBSerial.print(F(" (degrees * 10^-7)"));
+
+  //   long altitude = gnss.getAltitude();
+  //   USBSerial.print(F(" Alt: "));
+  //   USBSerial.print(altitude);
+  //   USBSerial.print(F(" (mm)"));
+
+  //   byte SIV = gnss.getSIV();
+  //   USBSerial.print(F(" SIV: "));
+  //   USBSerial.print(SIV);
+
+  //   int satellites = gnss.getYear();
+  //   USBSerial.print(F(" Satellites: "));
+  //   USBSerial.print(satellites);
+
+  //   USBSerial.println();
+  // }
 }
