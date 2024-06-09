@@ -14,7 +14,7 @@
 #include "data_header.h"
 
 #define TRANSMITTER 1
-#define MEASURE_STORE_RATE 1
+// #define MEASURE_STORE_RATE 1
 
 #define USE_LORA
 // #define USING_SX1262
@@ -103,11 +103,9 @@ void led_panic()
 uint32_t current_flash_address = 0x0;
 const char *flash_marker = "STARGAZE";
 uint8_t flashData[4096];
-
-void refresh_sector(uint32_t address)
+void refresh_write(uint32_t address, uint8_t *data, uint32_t length)
 {
   uint32_t rounded_4k_addr = ((address / 4096) * 4096);
-  USBSerial.printf("[INFO] Refreshing sector at %d.\n", rounded_4k_addr);
   if (!flash.readByteArray(rounded_4k_addr, &flashData[0], 4096))
   {
     USBSerial.println("[INFO] Flash read failed, halting.");
@@ -119,6 +117,8 @@ void refresh_sector(uint32_t address)
     USBSerial.println("[INFO] Flash erase failed, halting.");
     led_panic();
   }
+
+  memcpy(&flashData[address - rounded_4k_addr], data, length);
 
   if (!flash.writeByteArray(rounded_4k_addr, &flashData[0], 4096, true))
   {
@@ -191,8 +191,8 @@ void write_flash(uint8_t *data, uint32_t length)
   {
     USBSerial.println("[INFO] Flash write failed, erasing.");
     // Refresh sector above and below (check to s)
-    refresh_sector(current_flash_address);
-    refresh_sector(current_flash_address + 4096);
+    // refresh_sector(current_flash_address);
+    // refresh_sector(current_flash_address + 4096);
 
     USBSerial.printf("[INFO] Flash erase addr %d.", current_flash_address);
     if (flash.writeByteArray(current_flash_address, data, length, true))
@@ -206,6 +206,7 @@ void write_flash(uint8_t *data, uint32_t length)
       // debug info
       USBSerial.printf("Current flash address: %d\n", current_flash_address);
       USBSerial.printf("Data: %d %d %d %d\n", data[0], data[1], data[2], data[3]);
+      USBSerial.printf("Data: %d %d %d %d\n", data[4], data[5], data[6], data[7]);
       USBSerial.printf("Length: %d\n", length);
       led_panic();
     }
@@ -287,6 +288,7 @@ void setup()
   USBSerial.println("[INFO] Performing flash workaround.");
 
   //////////////////////////////////////////////////////////////////////////////////////////
+
   uint8_t readData1[32];
   if (flash.readByteArray(0x0, &readData1[0], 32))
   {
@@ -429,7 +431,6 @@ void setup()
 
   // Print first 16 bytes of flash
   init_flash();
-  refresh_sector(0);
 
   uint8_t readData[32];
   if (flash.readByteArray(0x0, &readData[0], 32))
