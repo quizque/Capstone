@@ -2,11 +2,14 @@
 #define DATA_TYPE_PRESSURE 0x02
 #define DATA_TYPE_IMU 0x03
 #define DATA_TYPE_MAG 0x04
+#define DATA_TYPE_DEVICE_ACTIVATE 0x05
 
 struct DataHeader
 {
+    unsigned int packet_flag = 0xD3ADB33F;
     unsigned int data_size;
     unsigned int data_type;
+    unsigned int timestamp;
 };
 
 struct GPSData
@@ -60,4 +63,9 @@ struct MagData
     float mag_x;
     float mag_y;
     float mag_z;
+};
+
+struct DeviceActivateData
+{
+    DataHeader header;
 };
