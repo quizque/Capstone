@@ -13,8 +13,8 @@
 #include "stargazer_constants.h"
 #include "data_header.h"
 
-// #define TRANSMITTER 1
-//  #define MEASURE_STORE_RATE 1
+#define TRANSMITTER 1
+#define MEASURE_STORE_RATE 1
 
 #define USE_LORA
 // #define USING_SX1262
@@ -29,7 +29,7 @@
 
 #define DATA_MAG_RATE 200
 
-#define DATA_RADIO_RATE 100
+#define DATA_RADIO_RATE 300
 
 // Radio config
 
@@ -58,6 +58,8 @@ bool high_imu = false;
 volatile bool operationDone = false;
 int transmissionState = RADIOLIB_ERR_NONE;
 uint8_t radio_round_robin = 0;
+
+float init_height = 0;
 
 short unsigned int led_current_pwm = 0;
 unsigned long int led_current_time = 0;
@@ -567,6 +569,8 @@ void setup()
   deviceActivateData.header.data_type = DATA_TYPE_DEVICE_ACTIVATE;
 
   write_flash((uint8_t *)&deviceActivateData, sizeof(DeviceActivateData));
+
+  init_height = ps.pressureToAltitudeFeet(ps.readPressureInchesHg());
 }
 
 unsigned long lastGPS = 0;
@@ -598,86 +602,52 @@ void loop()
   // /// Radio Data
   // ///
 
-  // #ifdef TRANSMITTER
-  //   if (currentMillis - lastTransmit > DATA_RADIO_RATE && transmissionState == RADIOLIB_ERR_NONE)
-  //   {
+#ifdef TRANSMITTER
+  if (currentMillis - lastTransmit > DATA_RADIO_RATE && transmissionState == RADIOLIB_ERR_NONE)
+  {
 
-  //     // GPS
-  //     if (radio_round_robin == 0)
-  //     {
-  //       if (gpsLock)
-  //       {
-  //         transmissionState = radio.transmit((uint8_t *)&gpsData, sizeof(GPSData));
-  //       }
-  //       else
-  //       {
-  //         radio_round_robin++;
-  //       }
-  //     }
+    TransmitData td;
 
-  //     // Pressure
-  //     if (radio_round_robin == 1)
-  //     {
-  //       if (pressure_enabled)
-  //       {
-  //         transmissionState = radio.transmit((uint8_t *)&pressureData, sizeof(PressureData));
-  //       }
-  //       else
-  //       {
-  //         radio_round_robin++;
-  //       }
-  //     }
+    td.header.data_size = sizeof(TransmitData);
+    td.header.data_type = DATA_TYPE_TRANSMIT;
+    td.header.timestamp = millis();
 
-  //     // IMU
-  //     if (radio_round_robin == 2)
-  //     {
-  //       if (imu_enabled)
-  //       {
-  //         transmissionState = radio.transmit((uint8_t *)&imuData, sizeof(IMUData));
-  //       }
-  //       else
-  //       {
-  //         radio_round_robin++;
-  //       }
+    if (gpsLock)
+    {
+      td.lat = gnss.getLatitude();
+      td.lon = gnss.getLongitude();
+    }
+    else
+    {
+      td.lat = 1;
+      td.lon = 1;
+    }
 
-  //       lastTransmit = currentMillis;
-  //     }
+    td.height = init_height - ps.pressureToAltitudeFeet(ps.readPressureInchesHg());
 
-  //     // Mag
-  //     if (radio_round_robin == 3)
-  //     {
-  //       if (mag_enabled)
-  //       {
-  //         transmissionState = radio.transmit((uint8_t *)&magData, sizeof(MagData));
-  //         radio_round_robin = 0;
-  //       }
-  //       else
-  //       {
-  //         radio_round_robin = 0;
-  //       }
-  //     }
+    transmissionState = radio.transmit((uint8_t *)&td, sizeof(TransmitData));
 
-  //     USBSerial.printf("Round robin: %d\n", radio_round_robin);
-  //   }
-  // #else
-  //   if (currentMillis - lastTransmit > DATA_RADIO_RATE && transmissionState == RADIOLIB_ERR_NONE)
-  //   {
-  //     uint8_t data[256];
-  //     uint8_t len = 0;
-  //     transmissionState = radio.receive(data, &len);
+    USBSerial.printf("Packet out\n");
+  }
+#else
+  if (currentMillis - lastTransmit > DATA_RADIO_RATE && transmissionState == RADIOLIB_ERR_NONE)
+  {
+    uint8_t data[256];
+    uint8_t len = 0;
+    transmissionState = radio.receive(data, &len);
 
-  //     if (transmissionState == RADIOLIB_ERR_NONE)
-  //     {
-  //       USBSerial.print("[INFO] Received: ");
-  //       for (int i = 0; i < len; i++)
-  //       {
-  //         USBSerial.print(data[i], HEX);
-  //         USBSerial.print(" ");
-  //       }
-  //       USBSerial.println();
-  //     }
-  //   }
-  // #endif
+    if (transmissionState == RADIOLIB_ERR_NONE)
+    {
+      USBSerial.print("[INFO] Received: ");
+      for (int i = 0; i < len; i++)
+      {
+        USBSerial.print(data[i], HEX);
+        USBSerial.print(" ");
+      }
+      USBSerial.println();
+    }
+  }
+#endif
 
   // //////////////////////////////////////////
   // /// GPS Data

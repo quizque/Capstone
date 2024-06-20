@@ -3,6 +3,7 @@
 #define DATA_TYPE_IMU 0x03
 #define DATA_TYPE_MAG 0x04
 #define DATA_TYPE_DEVICE_ACTIVATE 0x05
+#define DATA_TYPE_TRANSMIT 0x06
 
 struct DataHeader
 {
@@ -68,4 +69,13 @@ struct MagData
 struct DeviceActivateData
 {
     DataHeader header;
+};
+
+struct TransmitData
+{
+    DataHeader header;
+
+    uint32_t lat;
+    uint32_t lon;
+    float height;
 };
