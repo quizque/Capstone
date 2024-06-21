@@ -14,14 +14,14 @@
 #include "data_header.h"
 
 #define TRANSMITTER 1
-#define MEASURE_STORE_RATE 1
+// #define MEASURE_STORE_RATE 1
 
 #define USE_LORA
 // #define USING_SX1262
 
 // Data store rate
 #define DATA_GPS_RATE_NO_LOCK 2000
-#define DATA_GPS_RATE_LOCK 220
+#define DATA_GPS_RATE_LOCK 250
 
 #define DATA_PRESSURE_RATE 200
 
@@ -30,6 +30,10 @@
 #define DATA_MAG_RATE 200
 
 #define DATA_RADIO_RATE 300
+
+// If the acc goes above this value, the rocket has launched
+// and all devices will start recording at a higher data rate
+#define ACC_OVERDRIVE_WRITE 2.5
 
 // Radio config
 
@@ -54,6 +58,8 @@ bool pressure_enabled = false;
 bool imu_enabled = false;
 bool mag_enabled = false;
 bool high_imu = false;
+
+bool override_enabled = false;
 
 volatile bool operationDone = false;
 int transmissionState = RADIOLIB_ERR_NONE;
@@ -94,6 +100,11 @@ void led_fade_update()
 void ledSetHigh()
 {
   ledcWrite(0, 255);
+}
+
+void ledSetLow()
+{
+  ledcWrite(0, 0);
 }
 
 void led_panic()
@@ -174,12 +185,28 @@ void init_flash()
   // {
   //   USBSerial.println("[ERROR] Flash read failed.");
   // }
+
+  // flag to indicate that a packet was received
+  volatile bool receivedFlag = false;
+
+  // this function is called when a complete packet
+  // is received by the module
+  // IMPORTANT: this function MUST be 'void' type
+  //            and MUST NOT have any arguments!
+  ICACHE_RAM_ATTR void setFlag(void)
+  {
+    // we got a packet, set the flag
+    receivedFlag = true;
+  }
 }
 
 unsigned long lastWrite = 0;
 unsigned long totalWriteBytes = 0;
 // Store 4096 bytes of data to flash
 uint8_t flashData[4096];
+
+uint32_t time_since_last_flash_noti = 0;
+uint32_t flash_size = 1;
 
 void write_flash(uint8_t *data, uint32_t length)
 {
@@ -196,8 +223,13 @@ void write_flash(uint8_t *data, uint32_t length)
   }
 #else
 
-  USBSerial.print("[INFO] Current flash address: ");
-  USBSerial.println(current_flash_address);
+  // Display percent filled every 5 seconds
+  if (millis() - time_since_last_flash_noti > 5000)
+  {
+    USBSerial.print("[INFO] Flash percent filled: ");
+    USBSerial.println((float)current_flash_address / flash_size * 100);
+    time_since_last_flash_noti = millis();
+  }
 
   if (flash.writeByteArray(current_flash_address, data, length, true))
   {
@@ -553,9 +585,12 @@ void setup()
 
 #ifdef USE_LORA
   radio.setFrequency(919.0);
-  radio.setBandwidth(512.0);
+  radio.setBandwidth(500.0);
   radio.setSpreadingFactor(10);
   radio.setCodingRate(5);
+  radio.setPreambleLength(8);
+  radio.setOutputPower(RADIOLIB_SX1278_MAX_POWER);
+  radio.setPacketReceivedAction(setFlag);
   radio.setCRC(true);
 #endif
 
@@ -571,6 +606,8 @@ void setup()
   write_flash((uint8_t *)&deviceActivateData, sizeof(DeviceActivateData));
 
   init_height = ps.pressureToAltitudeFeet(ps.readPressureInchesHg());
+
+  flash_size = flash.getCapacity();
 }
 
 unsigned long lastGPS = 0;
@@ -591,8 +628,15 @@ PressureData pressureData;
 IMUData imuData;
 MagData magData;
 
+bool led_toggle = false;
+
+unsigned long lastRadio = 0;
+
+uint32_t lastOverdrive = 0;
+
 void loop()
 {
+
   // // USBSerial.printf("Loop time: %d\n", millis() - lastTime);
   // // lastTime = millis();
 
@@ -614,8 +658,8 @@ void loop()
 
     if (gpsLock)
     {
-      td.lat = gnss.getLatitude();
-      td.lon = gnss.getLongitude();
+      td.lat = gpsData.latitude;
+      td.lon = gpsData.longitude;
     }
     else
     {
@@ -623,30 +667,48 @@ void loop()
       td.lon = 1;
     }
 
-    td.height = init_height - ps.pressureToAltitudeFeet(ps.readPressureInchesHg());
+    td.height = ps.pressureToAltitudeMeters(ps.readPressureMillibars());
 
     transmissionState = radio.transmit((uint8_t *)&td, sizeof(TransmitData));
 
-    USBSerial.printf("Packet out\n");
+    //    USBSerial.printf("Packet out %d\n", sizeof(TransmitData));
+
+    lastTransmit = millis();
   }
 #else
-  if (currentMillis - lastTransmit > DATA_RADIO_RATE && transmissionState == RADIOLIB_ERR_NONE)
-  {
-    uint8_t data[256];
-    uint8_t len = 0;
-    transmissionState = radio.receive(data, &len);
 
-    if (transmissionState == RADIOLIB_ERR_NONE)
+  uint8_t data[128];
+  transmissionState = radio.receive(data, 128);
+
+  if (transmissionState == RADIOLIB_ERR_NONE)
+  {
+
+    TransmitData *td = (TransmitData *)data;
+
+    if (td->header.packet_flag != 0xD3ADB33F)
+      return;
+
+    USBSerial.print("[INFO] Received: ");
+    USBSerial.printf("%d %d %d %f", td->header.timestamp, td->lon, td->lat, td->height);
+    write_flash((uint8_t *)&td, sizeof(TransmitData));
+
+    led_toggle = !led_toggle;
+
+    if (led_toggle)
     {
-      USBSerial.print("[INFO] Received: ");
-      for (int i = 0; i < len; i++)
-      {
-        USBSerial.print(data[i], HEX);
-        USBSerial.print(" ");
-      }
-      USBSerial.println();
+      ledSetHigh();
+    }
+    else
+    {
+      ledSetLow();
     }
   }
+  else
+  {
+    USBSerial.println("e");
+  }
+
+  return;
 #endif
 
   // //////////////////////////////////////////
@@ -658,9 +720,9 @@ void loop()
     led_fade_update();
   }
 
-  if (!gpsLock && currentMillis - lastGPS > DATA_GPS_RATE_NO_LOCK)
+  if ((!gpsLock && currentMillis - lastGPS > DATA_GPS_RATE_NO_LOCK && gps_enabled) ||
+      (!gpsLock && currentMillis - lastGPS > DATA_GPS_RATE_NO_LOCK * 3 && gps_enabled))
   {
-
     if (gnss.getFixType() != 0)
     {
       USBSerial.println("LOCK OBTAINED");
@@ -677,7 +739,8 @@ void loop()
     lastGPS = currentMillis;
   }
 
-  if (gpsLock && currentMillis - lastGPS > DATA_GPS_RATE_LOCK)
+  if ((gpsLock && currentMillis - lastGPS > DATA_GPS_RATE_LOCK && gps_enabled) ||
+      (gpsLock && currentMillis - lastGPS > DATA_GPS_RATE_LOCK * 3 && gps_enabled))
   {
     gpsData.header.data_size = sizeof(GPSData);
     gpsData.header.data_type = DATA_TYPE_GPS;
@@ -718,7 +781,8 @@ void loop()
   /// Pressure Data
   ///
 
-  if (currentMillis - lastPressure > DATA_PRESSURE_RATE && pressure_enabled)
+  if ((currentMillis - lastPressure > DATA_PRESSURE_RATE && pressure_enabled && lastOverdrive > currentMillis) ||
+      (currentMillis - lastPressure > DATA_PRESSURE_RATE * 3 && pressure_enabled && lastOverdrive < currentMillis))
   {
     float pressure = ps.readPressureMillibars();
     float temperature = ps.readTemperatureC();
@@ -739,7 +803,25 @@ void loop()
   // /// IMU Data
   // ///
 
-  if (currentMillis - lastIMU > DATA_IMU_RATE && imu_enabled)
+  if (imu_enabled)
+  {
+    imu.read();
+
+    imu.a.x = imu.a.x * 0.488 / 1000.0;
+    imu.a.y = imu.a.y * 0.488 / 1000.0;
+    imu.a.z = imu.a.z * 0.488 / 1000.0;
+
+    float acc = sqrt(imu.a.x * imu.a.x + imu.a.y * imu.a.y + imu.a.z * imu.a.z);
+    // USBSerial.printf("Accel: %f\n", acc);
+    if (acc > ACC_OVERDRIVE_WRITE)
+    {
+      USBSerial.println("OVERDRIVE");
+      lastOverdrive = currentMillis + 20000;
+    }
+  }
+
+  if ((currentMillis - lastIMU > DATA_IMU_RATE && imu_enabled && lastOverdrive > currentMillis) ||
+      (currentMillis - lastIMU > DATA_IMU_RATE * 3 && imu_enabled && lastOverdrive < currentMillis))
   {
     imu.read();
 
@@ -766,7 +848,8 @@ void loop()
   // /// Mag Data
   // ///
 
-  if (currentMillis - lastMag > DATA_MAG_RATE && mag_enabled)
+  if ((currentMillis - lastMag > DATA_MAG_RATE && mag_enabled && lastOverdrive > currentMillis) ||
+      (currentMillis - lastMag > DATA_MAG_RATE * 3 && mag_enabled && lastOverdrive < currentMillis))
   {
     mag.read();
 
