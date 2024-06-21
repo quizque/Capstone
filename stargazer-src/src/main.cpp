@@ -185,19 +185,6 @@ void init_flash()
   // {
   //   USBSerial.println("[ERROR] Flash read failed.");
   // }
-
-  // flag to indicate that a packet was received
-  volatile bool receivedFlag = false;
-
-  // this function is called when a complete packet
-  // is received by the module
-  // IMPORTANT: this function MUST be 'void' type
-  //            and MUST NOT have any arguments!
-  ICACHE_RAM_ATTR void setFlag(void)
-  {
-    // we got a packet, set the flag
-    receivedFlag = true;
-  }
 }
 
 unsigned long lastWrite = 0;
@@ -590,7 +577,6 @@ void setup()
   radio.setCodingRate(5);
   radio.setPreambleLength(8);
   radio.setOutputPower(RADIOLIB_SX1278_MAX_POWER);
-  radio.setPacketReceivedAction(setFlag);
   radio.setCRC(true);
 #endif
 
