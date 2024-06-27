@@ -13,11 +13,11 @@
 #include "stargazer_constants.h"
 #include "data_header.h"
 
-#define TRANSMITTER 1
+// #define TRANSMITTER 1
 // #define MEASURE_STORE_RATE 1
 
 #define USE_LORA
-// #define USING_SX1262
+#define USING_SX1262
 
 // Data store rate
 #define DATA_GPS_RATE_NO_LOCK 2000
