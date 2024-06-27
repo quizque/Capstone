@@ -3,7 +3,7 @@
 	(generator "eeschema")
 	(generator_version "8.0")
 	(uuid "449cea7a-16ad-4bd1-9735-6c0ecb8412c3")
-	(paper "A4")
+	(paper "USLetter")
 	(lib_symbols
 		(symbol "Battery_Management:MCP73831-2-OT"
 			(exclude_from_sim no)
