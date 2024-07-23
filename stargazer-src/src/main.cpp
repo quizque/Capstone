@@ -274,6 +274,7 @@ void loop()
   lastTime = micros();
 
   imu.read();
+  mag.read();
 
   float ax = (float)imu.a.x * 0.122 / 1000.0;
   float ay = (float)imu.a.y * 0.122 / 1000.0;
@@ -283,9 +284,9 @@ void loop()
   float gy_rad = (imu.g.y * 35.0 / 1000.0) * (PI / 180);
   float gz_rad = (imu.g.z * 35.0 / 1000.0) * (PI / 180);
 
-  float mx = (float)mag.m.x / 3421.0;
-  float my = (float)mag.m.y / 3421.0;
-  float mz = (float)mag.m.z / 3421.0;
+  float mx = (((float)mag.m.x / 3421.0) - -0.77) / 0.38;
+  float my = (((float)mag.m.y / 3421.0) - 1.16) / 0.38;
+  float mz = (((float)mag.m.z / 3421.0) - -2.04) / 0.43;
 
   float norm = sqrt(ax * ax + ay * ay + az * az);
   ax /= norm;
