@@ -177,6 +177,9 @@ def main():
             last_rot = quaternion_to_rotation_matrix(quaternion)
             r_dat = True
 
+        # Clear the screen
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+
         if r_dat:
             # Apply the rotation matrix
             glLoadIdentity()
