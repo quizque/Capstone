@@ -73,9 +73,11 @@ struct DeviceActivateData
 
 struct TransmitData
 {
-    DataHeader header;
-
-    uint32_t lat;
-    uint32_t lon;
-    float height;
+    float q0;
+    float q1;
+    float q2;
+    float q3;
+    float pressure;
+    float gforce;
+    float temperature;
 };

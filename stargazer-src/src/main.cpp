@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <SPI.h>
 #include <Wire.h>
-#include <SparkFun_u-blox_GNSS_Arduino_Library.h>
+// #include <SparkFun_u-blox_GNSS_Arduino_Library.h>
 
 #include <SPIMemory.h>
 #include <RadioLib.h>
@@ -17,7 +17,7 @@
 // #define MEASURE_STORE_RATE 1
 
 #define USE_LORA
-#define USING_SX1262
+// #define USING_SX1262
 
 // Data store rate
 #define DATA_GPS_RATE_NO_LOCK 2000
@@ -44,13 +44,15 @@ SX1276
 #endif
 radio = new Module(LORA_CS, LORA_IRQ, LORA_RST);
 
+volatile bool receivedFlag = false;
+
 SPIFlash flash(FLASH_CS);
 
 LPS ps;
 LSM6 imu;
 LIS3MDL mag;
 
-SFE_UBLOX_GNSS gnss;
+// SFE_UBLOX_GNSS gnss;
 
 // Enabled devices
 bool gps_enabled = false;
@@ -70,52 +72,14 @@ float init_height = 0;
 short unsigned int led_current_pwm = 0;
 unsigned long int led_current_time = 0;
 bool led_up = true;
-void led_fade_update()
-{
-  if (millis() - led_current_time < 1)
-  {
-    return;
-  }
-  if (led_up)
-  {
-    led_current_pwm += 1;
-    if (led_current_pwm >= 255)
-    {
-      led_up = false;
-    }
-  }
-  else
-  {
-    led_current_pwm -= 1;
-    if (led_current_pwm <= 0)
-    {
-      led_up = true;
-    }
-  }
 
-  led_current_time = millis();
-  ledcWrite(0, led_current_pwm);
-}
-
-void ledSetHigh()
+#if defined(ESP8266) || defined(ESP32)
+ICACHE_RAM_ATTR
+#endif
+void setFlag(void)
 {
-  ledcWrite(0, 255);
-}
-
-void ledSetLow()
-{
-  ledcWrite(0, 0);
-}
-
-void led_panic()
-{
-  while (1)
-  {
-    ledcWrite(0, 0);
-    delay(100);
-    ledcWrite(0, 255);
-    delay(100);
-  }
+  // we got a packet, set the flag
+  receivedFlag = true;
 }
 
 void setup()
@@ -154,6 +118,8 @@ void setup()
   ///
 
   Wire.begin();
+  // i2c 100kHz
+  Wire.setClock(100000);
   USBSerial.println("[INFO] I2C started.");
 
   // Check Barometer
@@ -196,6 +162,31 @@ void setup()
     mag.enableDefault();
     mag.writeReg(LIS3MDL::CTRL_REG2, 0x20);
   }
+
+  int state = radio.begin();
+  if (state != RADIOLIB_ERR_NONE)
+  {
+    USBSerial.print(F("[ERROR] Radio not found, code:"));
+    USBSerial.println(state);
+    while (1)
+      ;
+  }
+  else
+  {
+
+    USBSerial.println("[INFO] Radio found.");
+  }
+
+  // radio.setDio0Action(setFlag, RISING);
+  radio.setFrequency(912.0);
+  radio.setBandwidth(500.0);
+  radio.setSpreadingFactor(6);
+  radio.setCodingRate(7);
+  radio.setPreambleLength(8);
+  radio.setOutputPower(RADIOLIB_SX1278_MAX_POWER);
+  radio.setCRC(true);
+  // radio.setPacketReceivedAction(setFlag);
+  // radio.startReceive();
 }
 
 unsigned long lastTime = 0; // Calculate loop time
@@ -203,7 +194,7 @@ unsigned long lastTime = 0; // Calculate loop time
 float pitch = 0.0;
 float roll = 0.0;
 float yaw = 0.0;
-const float alpha = 0.98;
+const float alpha = 0.8;
 
 float q0 = 1.0, q1 = 0.0, q2 = 0.0, q3 = 0.0;
 
@@ -258,8 +249,19 @@ float computeMagYaw(float mx, float my, float mz, float q0, float q1, float q2, 
   return atan2(hy, hx);
 }
 
+float get_sign(float x)
+{
+  if (x < 0)
+  {
+    return -1;
+  }
+  return 1;
+}
+
 void loop()
 {
+
+#ifdef TRANSMITTER
 
   // // USBSerial.printf("Loop time: %d\n", millis() - lastTime);
   // // lastTime = millis();
@@ -279,6 +281,8 @@ void loop()
   float ax = (float)imu.a.x * 0.122 / 1000.0;
   float ay = (float)imu.a.y * 0.122 / 1000.0;
   float az = (float)imu.a.z * 0.122 / 1000.0;
+
+  float g_force = sqrt(ax * ax + ay * ay + az * az) * get_sign(az);
 
   float gx_rad = (imu.g.x * 35.0 / 1000.0) * (PI / 180);
   float gy_rad = (imu.g.y * 35.0 / 1000.0) * (PI / 180);
@@ -317,17 +321,39 @@ void loop()
 
   normalizeQuaternion(q0, q1, q2, q3);
 
-  float mag_yaw = computeMagYaw(mx, my, mz, q0, q1, q2, q3) * 180 / PI;
+  // float mag_yaw = computeMagYaw(mx, my, mz, q0, q1, q2, q3) * 180 / PI;
 
-  float yaw_gyro = 2 * (q0 * q3 + q1 * q2);
-  yaw_gyro = atan2(yaw_gyro, 1 - 2 * (q2 * q2 + q3 * q3)) * 180 / PI;
-  float yaw = alpha * yaw_gyro + (1 - alpha) * mag_yaw;
+  // float yaw_gyro = 2 * (q0 * q3 + q1 * q2);
+  // yaw_gyro = atan2(yaw_gyro, 1 - 2 * (q2 * q2 + q3 * q3)) * 180 / PI;
+  // float yaw = alpha * yaw_gyro + (1 - alpha) * mag_yaw;
 
-  float pitch, roll;
-  quaternionToEuler(q0, q1, q2, q3, yaw, pitch, roll);
+  // float pitch, roll;
+  // quaternionToEuler(q0, q1, q2, q3, yaw, pitch, roll);
 
   // Print the Euler angles
-  USBSerial.printf("%f,%f,%f,%f\n", q0, q1, q2, q3);
+  // char buffer[200];
+  // sprintf(buffer, "%f,%f,%f,%f,%f,%f,%f", q0, q1, q2, q3, ps.readPressureMillibars(), g_force, ps.readTemperatureC());
+
+  TransmitData td;
+
+  td.q0 = q0;
+  td.q1 = q1;
+  td.q2 = q2;
+  td.q3 = q3;
+  td.pressure = ps.readPressureMillibars();
+  td.gforce = g_force;
+  td.temperature = ps.readTemperatureC();
+
+  int state = radio.transmit((uint8_t *)&td, sizeof(TransmitData));
+  if (state != RADIOLIB_ERR_NONE)
+  {
+    USBSerial.print(F("[ERROR] Failed to transmit, code: "));
+    USBSerial.println(state);
+  }
+
+  USBSerial.printf("%f,%f,%f,%f,%f,%f,%f\n", td.q0, td.q1, td.q2, td.q3, td.pressure, td.gforce, td.temperature);
+  // USBSerial.println(buffer);
+  delay(10);
 
   // //////////////////////////////////////////
   // /// Mag Data
@@ -352,4 +378,66 @@ void loop()
 
   //   lastMag = currentMillis;
   // }
+
+#else
+
+  // reset flag
+  receivedFlag = false;
+
+  // you can read received data as an Arduino String
+  uint8_t data[sizeof(TransmitData)];
+  int state = radio.receive(data, sizeof(TransmitData));
+
+  // you can also read received data as byte array
+  /*
+    byte byteArr[8];
+    int numBytes = radio.getPacketLength();
+    int state = radio.readData(byteArr, numBytes);
+  */
+
+  if (state == RADIOLIB_ERR_NONE)
+  {
+    TransmitData *td = (TransmitData *)data;
+
+    // // packet was successfully received
+    // USBSerial.println(F("[SX1278] Received packet!"));
+    // USBSerial.println(sizeof(TransmitData));
+
+    // // print data of the packet
+    // USBSerial.print(F("[SX1278] Data:\t\t"));
+    USBSerial.printf("%f,%f,%f,%f,%f,%f,%f,%f,%f\n", td->q0, td->q1, td->q2, td->q3, td->pressure, td->gforce, td->temperature, radio.getRSSI(), radio.getSNR());
+
+    // // print RSSI (Received Signal Strength Indicator)
+    // USBSerial.print(F("[SX1278] RSSI:\t\t"));
+    // USBSerial.print(radio.getRSSI());
+    // USBSerial.println(F(" dBm"));
+
+    // // print SNR (Signal-to-Noise Ratio)
+    // USBSerial.print(F("[SX1278] SNR:\t\t"));
+    // USBSerial.print(radio.getSNR());
+    // USBSerial.println(F(" dB"));
+
+    // // print frequency error
+    // USBSerial.print(F("[SX1278] Frequency error:\t"));
+    // USBSerial.print(radio.getFrequencyError());
+    // USBSerial.println(F(" Hz"));
+  }
+  else if (state == RADIOLIB_ERR_RX_TIMEOUT)
+  {
+    // timeout occurred while waiting for a packet
+    // Serial.println(F("timeout!"));
+  }
+  else if (state == RADIOLIB_ERR_CRC_MISMATCH)
+  {
+    // packet was received, but is malformed
+    // Serial.println(F("CRC error!"));
+  }
+  else
+  {
+    // some other error occurred
+    // Serial.print(F("failed, code "));
+    // Serial.println(state);
+  }
+
+#endif
 }
