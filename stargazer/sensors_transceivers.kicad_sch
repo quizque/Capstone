@@ -4,6 +4,9 @@
 	(generator_version "8.0")
 	(uuid "fa6b7a47-d14d-4223-9be4-eb12b43fc0f0")
 	(paper "USLetter")
+	(title_block
+		(title "Sensors & Data ICs")
+	)
 	(lib_symbols
 		(symbol "Device:C"
 			(pin_numbers hide)
@@ -11286,7 +11289,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "CON-SMA-EDGE-S "
+		(property "Value" "CON-SMA-EDGE-S"
 			(at 77.47 102.87 0)
 			(effects
 				(font
