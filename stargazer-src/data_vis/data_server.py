@@ -5,7 +5,7 @@ from queue import Queue
 import struct
 
 # Serial port configuration
-serial_port = "COM4"  # Update this with your serial port
+serial_port = "COM5"  # Update this with your serial port
 baud_rate = 115200
 
 # Socket configuration
@@ -29,12 +29,17 @@ def serial_thread():
             ser.reset_input_buffer()
             line = ser.readline().decode("utf-8").strip()
             # print(f"Received: {line}")
-
-            if len(line.split(",")) != 9:
+            r = line.split(",")
+            if len(r) == 7:
+                r.append(0)
+                r.append(0)
+            if len(r) != 9:
                 continue
 
+            # print(r)
+
             # Parse the quaternion
-            q = list(map(float, line.split(",")))
+            q = list(map(float, r))
 
             # Pack the list of floats (quaternion data) into a byte string
             data_bytes = struct.pack("fffffffff", *q)
