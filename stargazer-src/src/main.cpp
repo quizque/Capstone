@@ -13,6 +13,12 @@
 #include "stargazer_constants.h"
 #include "data_header.h"
 
+/////////////////////////////////////////////
+// Configuration
+
+// Enable/disable transmitter mode and select
+// the type of transmitter
+
 // #define TRANSMITTER 1
 // #define MEASURE_STORE_RATE 1
 
@@ -35,8 +41,10 @@
 // and all devices will start recording at a higher data rate
 #define ACC_OVERDRIVE_WRITE 2.5
 
-// Radio config
+/////////////////////////////////////////////
+// Variables definitions
 
+// Radio config
 #ifdef USING_SX1262
 SX1262
 #else
@@ -44,43 +52,28 @@ SX1276
 #endif
 radio = new Module(LORA_CS, LORA_IRQ, LORA_RST);
 
-volatile bool receivedFlag = false;
-
+// Flash memory
 SPIFlash flash(FLASH_CS);
 
+// Sensors
 LPS ps;
 LSM6 imu;
 LIS3MDL mag;
 
-// SFE_UBLOX_GNSS gnss;
-
 // Enabled devices
+// This is automatically set by the program
 bool gps_enabled = false;
 bool pressure_enabled = false;
 bool imu_enabled = false;
 bool mag_enabled = false;
 bool high_imu = false;
 
+// Is high data rate enabled
 bool override_enabled = false;
 
-volatile bool operationDone = false;
+// Transmission state
 int transmissionState = RADIOLIB_ERR_NONE;
 uint8_t radio_round_robin = 0;
-
-float init_height = 0;
-
-short unsigned int led_current_pwm = 0;
-unsigned long int led_current_time = 0;
-bool led_up = true;
-
-#if defined(ESP8266) || defined(ESP32)
-ICACHE_RAM_ATTR
-#endif
-void setFlag(void)
-{
-  // we got a packet, set the flag
-  receivedFlag = true;
-}
 
 void setup()
 {
@@ -89,15 +82,14 @@ void setup()
   ///
 
   USBSerial.begin(115200);
-  delay(2000);
+  delay(2000); // Wait for USB to connect, mostly for debugging
   USBSerial.println("[INFO] Serial started.");
 
   ///
   /// Setup LED
   ///
 
-  // pinMode(LED_STATUS, OUTPUT);
-  // analogWrite(LED_STATUS, 30);
+  // Enable the PWM component for the LED
   ledcSetup(0, 5000, 8);
   ledcAttachPin(LED_STATUS, 0);
 
@@ -111,7 +103,7 @@ void setup()
   pinMode(LORA_CS, OUTPUT);
   pinMode(SD_CS, OUTPUT);
 
-  //   //////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////
 
   ///
   /// Setup I2C
@@ -160,6 +152,7 @@ void setup()
     mag_enabled = true;
 
     mag.enableDefault();
+    // Enable medium performance mode
     mag.writeReg(LIS3MDL::CTRL_REG2, 0x20);
   }
 
@@ -168,6 +161,7 @@ void setup()
   {
     USBSerial.print(F("[ERROR] Radio not found, code:"));
     USBSerial.println(state);
+    // If the radio is not found, we will just hang here
     while (1)
       ;
   }
@@ -177,7 +171,7 @@ void setup()
     USBSerial.println("[INFO] Radio found.");
   }
 
-  // radio.setDio0Action(setFlag, RISING);
+  // Set frequency, bandwidth, spreading factor, coding rate, etc.
   radio.setFrequency(912.0);
   radio.setBandwidth(500.0);
   radio.setSpreadingFactor(6);
@@ -185,8 +179,6 @@ void setup()
   radio.setPreambleLength(8);
   radio.setOutputPower(RADIOLIB_SX1278_MAX_POWER);
   radio.setCRC(true);
-  // radio.setPacketReceivedAction(setFlag);
-  // radio.startReceive();
 }
 
 unsigned long lastTime = 0; // Calculate loop time
@@ -194,10 +186,17 @@ unsigned long lastTime = 0; // Calculate loop time
 float pitch = 0.0;
 float roll = 0.0;
 float yaw = 0.0;
+
+// Complementary filter constant, controls how "reactive"
+// the filter is to changes in the gyroscope data
 const float alpha = 0.8;
 
+// Quaternion values
 float q0 = 1.0, q1 = 0.0, q2 = 0.0, q3 = 0.0;
 
+// Function to normalize a quaternion
+// Simply remaps all values to have a magnitude of 1
+// (i.e. all values end up on the unit sphere)
 void normalizeQuaternion(float &qw, float &qx, float &qy, float &qz)
 {
   float norm = sqrt(qw * qw + qx * qx + qy * qy + qz * qz);
@@ -207,6 +206,9 @@ void normalizeQuaternion(float &qw, float &qx, float &qy, float &qz)
   qz /= norm;
 }
 
+// Function to convert a quaternion to Euler angles
+// https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles#Quaternion_to_Euler_angles_(in_3-2-1_sequence)_conversion
+// https://www.nxp.com/docs/en/application-note/AN3461.pdf
 void quaternionToEuler(float qw, float qx, float qy, float qz, float &yaw, float &pitch, float &roll)
 {
   // Roll (x-axis rotation)
@@ -232,7 +234,10 @@ void quaternionToEuler(float qw, float qx, float qy, float qz, float &yaw, float
   roll = roll * 180 / PI;
 }
 
-// Function to compute the yaw from magnetometer data
+// Recompute the quanternion by biasing it with the magnetometer data
+// Only affects yaw since pitch/roll are already solvable by the IMU.
+// NOTE: This is a poor implementation, ideally, this should only be used on startup
+// https://community.bosch-sensortec.com/t5/MEMS-sensors-forum/Heading-Calculation/td-p/88979/page/2
 float computeMagYaw(float mx, float my, float mz, float q0, float q1, float q2, float q3)
 {
   // Normalize magnetometer data
@@ -249,6 +254,7 @@ float computeMagYaw(float mx, float my, float mz, float q0, float q1, float q2, 
   return atan2(hy, hx);
 }
 
+// Get the sign of a float
 float get_sign(float x)
 {
   if (x < 0)
@@ -263,77 +269,83 @@ void loop()
 
 #ifdef TRANSMITTER
 
-  // // USBSerial.printf("Loop time: %d\n", millis() - lastTime);
-  // // lastTime = millis();
-
-  // 500 Hz
-  while (micros() - lastTime < 2000)
-  {
-  }
-
+  // Read the time since the last loop
   float dt = (micros() - lastTime) / 1000000.0;
 
   lastTime = micros();
 
+  // Read the sensors
   imu.read();
   mag.read();
 
+  // Read and convert the accelerometer data
   float ax = (float)imu.a.x * 0.122 / 1000.0;
   float ay = (float)imu.a.y * 0.122 / 1000.0;
   float az = (float)imu.a.z * 0.122 / 1000.0;
 
+  // Calculate the g-force
   float g_force = sqrt(ax * ax + ay * ay + az * az) * get_sign(az);
 
+  // Read and convert the gyroscope data (in rad/s, for the complementary filter)
   float gx_rad = (imu.g.x * 35.0 / 1000.0) * (PI / 180);
   float gy_rad = (imu.g.y * 35.0 / 1000.0) * (PI / 180);
   float gz_rad = (imu.g.z * 35.0 / 1000.0) * (PI / 180);
 
+  // Read and convert the magnetometer data
   float mx = (((float)mag.m.x / 3421.0) - -0.77) / 0.38;
   float my = (((float)mag.m.y / 3421.0) - 1.16) / 0.38;
   float mz = (((float)mag.m.z / 3421.0) - -2.04) / 0.43;
 
+  ///////////////////////////////////////////////
+  // Quaternion Complementary Filter
+  //
+  // NOTE: This is pretty thrown together from basic knowledge
+  //       and some online resources. It is not perfect and doesn't
+  //       work along the X/Y axis correctly.
+  //
+  // This filter works by "correcting" its self with a gravity vector
+  // and then updating at a high speed with the gyroscope data. The
+  // magnetometer data is used to correct the yaw angle (but doesn't
+  // work as intended, kind of).
+
+  // Normalize the magnetometer data
   float norm = sqrt(ax * ax + ay * ay + az * az);
   ax /= norm;
   ay /= norm;
   az /= norm;
 
+  // Convert from quaternion to gravity vector
   float vx = 2 * (q1 * q3 - q0 * q2);
   float vy = 2 * (q0 * q1 + q2 * q3);
   float vz = q0 * q0 - q1 * q1 - q2 * q2 + q3 * q3;
 
+  // Compute the error between the accelerometer vector and the gravity vector
   float ex = (ay * vz - az * vy);
   float ey = (az * vx - ax * vz);
   float ez = (ax * vy - ay * vx);
 
+  // Apply the error to the gyroscope data
   gx_rad += alpha * ex;
   gy_rad += alpha * ey;
   gz_rad += alpha * ez;
 
+  // Calculate the quaternion derivative
   float q0_dot = 0.5 * (-q1 * gx_rad - q2 * gy_rad - q3 * gz_rad);
   float q1_dot = 0.5 * (q0 * gx_rad + q2 * gz_rad - q3 * gy_rad);
   float q2_dot = 0.5 * (q0 * gy_rad - q1 * gz_rad + q3 * gx_rad);
   float q3_dot = 0.5 * (q0 * gz_rad + q1 * gy_rad - q2 * gx_rad);
 
+  // Integrate the quaternion derivative
   q0 += q0_dot * dt;
   q1 += q1_dot * dt;
   q2 += q2_dot * dt;
   q3 += q3_dot * dt;
 
+  // Normalize the quaternion
+  // The derivative integration can cause some values to go out of bounds
   normalizeQuaternion(q0, q1, q2, q3);
 
-  // float mag_yaw = computeMagYaw(mx, my, mz, q0, q1, q2, q3) * 180 / PI;
-
-  // float yaw_gyro = 2 * (q0 * q3 + q1 * q2);
-  // yaw_gyro = atan2(yaw_gyro, 1 - 2 * (q2 * q2 + q3 * q3)) * 180 / PI;
-  // float yaw = alpha * yaw_gyro + (1 - alpha) * mag_yaw;
-
-  // float pitch, roll;
-  // quaternionToEuler(q0, q1, q2, q3, yaw, pitch, roll);
-
-  // Print the Euler angles
-  // char buffer[200];
-  // sprintf(buffer, "%f,%f,%f,%f,%f,%f,%f", q0, q1, q2, q3, ps.readPressureMillibars(), g_force, ps.readTemperatureC());
-
+  // Assemble the data to be transmitted
   TransmitData td;
 
   td.q0 = q0;
@@ -344,6 +356,7 @@ void loop()
   td.gforce = g_force;
   td.temperature = ps.readTemperatureC();
 
+  // Transmit the data
   int state = radio.transmit((uint8_t *)&td, sizeof(TransmitData));
   if (state != RADIOLIB_ERR_NONE)
   {
@@ -351,92 +364,25 @@ void loop()
     USBSerial.println(state);
   }
 
+  // Print the data to the serial monitor for when the board is connected to the computer
   USBSerial.printf("%f,%f,%f,%f,%f,%f,%f\n", td.q0, td.q1, td.q2, td.q3, td.pressure, td.gforce, td.temperature);
-  // USBSerial.println(buffer);
+
+  // Required due to the radio library having a lot of weird issues
   delay(10);
-
-  // //////////////////////////////////////////
-  // /// Mag Data
-  // ///
-
-  // if ((currentMillis - lastMag > DATA_MAG_RATE && mag_enabled && lastOverdrive > currentMillis) ||
-  //     (currentMillis - lastMag > DATA_MAG_RATE * 3 && mag_enabled && lastOverdrive < currentMillis))
-  // {
-  //   mag.read();
-
-  //   magData.header.data_size = sizeof(MagData);
-  //   magData.header.data_type = DATA_TYPE_MAG;
-  //   magData.header.timestamp = millis();
-
-  //   magData.mag_x = (float)mag.m.x / 1711.0;
-  //   magData.mag_y = (float)mag.m.y / 1711.0;
-  //   magData.mag_z = (float)mag.m.z / 1711.0;
-
-  //   // USBSerial.printf("Mag: %f %f %f\n", magData.mag_x, magData.mag_y, magData.mag_z);
-
-  //   write_flash((uint8_t *)&magData, sizeof(MagData));
-
-  //   lastMag = currentMillis;
-  // }
 
 #else
 
-  // reset flag
-  receivedFlag = false;
-
-  // you can read received data as an Arduino String
+  // Setup the data to be received
   uint8_t data[sizeof(TransmitData)];
   int state = radio.receive(data, sizeof(TransmitData));
 
-  // you can also read received data as byte array
-  /*
-    byte byteArr[8];
-    int numBytes = radio.getPacketLength();
-    int state = radio.readData(byteArr, numBytes);
-  */
-
   if (state == RADIOLIB_ERR_NONE)
   {
+    // Cast bytes to struct so we can access the data
     TransmitData *td = (TransmitData *)data;
 
-    // // packet was successfully received
-    // USBSerial.println(F("[SX1278] Received packet!"));
-    // USBSerial.println(sizeof(TransmitData));
-
-    // // print data of the packet
-    // USBSerial.print(F("[SX1278] Data:\t\t"));
+    // Print the data to the serial monitor for when the board is connected to the computer
     USBSerial.printf("%f,%f,%f,%f,%f,%f,%f,%f,%f\n", td->q0, td->q1, td->q2, td->q3, td->pressure, td->gforce, td->temperature, radio.getRSSI(), radio.getSNR());
-
-    // // print RSSI (Received Signal Strength Indicator)
-    // USBSerial.print(F("[SX1278] RSSI:\t\t"));
-    // USBSerial.print(radio.getRSSI());
-    // USBSerial.println(F(" dBm"));
-
-    // // print SNR (Signal-to-Noise Ratio)
-    // USBSerial.print(F("[SX1278] SNR:\t\t"));
-    // USBSerial.print(radio.getSNR());
-    // USBSerial.println(F(" dB"));
-
-    // // print frequency error
-    // USBSerial.print(F("[SX1278] Frequency error:\t"));
-    // USBSerial.print(radio.getFrequencyError());
-    // USBSerial.println(F(" Hz"));
-  }
-  else if (state == RADIOLIB_ERR_RX_TIMEOUT)
-  {
-    // timeout occurred while waiting for a packet
-    // Serial.println(F("timeout!"));
-  }
-  else if (state == RADIOLIB_ERR_CRC_MISMATCH)
-  {
-    // packet was received, but is malformed
-    // Serial.println(F("CRC error!"));
-  }
-  else
-  {
-    // some other error occurred
-    // Serial.print(F("failed, code "));
-    // Serial.println(state);
   }
 
 #endif

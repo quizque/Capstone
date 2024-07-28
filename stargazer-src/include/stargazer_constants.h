@@ -1,3 +1,4 @@
+// IO pin definitions for the Stargazer board
 #define LED_STATUS 0
 #define LORA_RST 1
 #define LORA_CS 2

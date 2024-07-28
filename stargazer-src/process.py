@@ -5,6 +5,9 @@ import csv
 data_header_format = (
     "<IIII"  # Read 4 unsigned ints (packet_flag, data_size, data_type, timestamp)
 )
+
+# GPS data formats
+# See data_types.h for the struct definition
 gps_data_format = "<HBBBBBBiiIIIBBBB"
 pressure_data_format = "<ff"
 imu_data_format = "<hhhhhh"

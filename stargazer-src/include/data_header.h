@@ -1,3 +1,6 @@
+// Contains structures for data headers and data packets
+
+// Data packet IDs
 #define DATA_TYPE_GPS 0x01
 #define DATA_TYPE_PRESSURE 0x02
 #define DATA_TYPE_IMU 0x03
@@ -5,6 +8,10 @@
 #define DATA_TYPE_DEVICE_ACTIVATE 0x05
 #define DATA_TYPE_TRANSMIT 0x06
 
+// Data header structure
+// Every data packet should start with this header so
+// that the receiver can identify the packet type, size,
+// timestamp, and integrity
 struct DataHeader
 {
     unsigned int packet_flag = 0xD3ADB33F;
@@ -71,6 +78,8 @@ struct DeviceActivateData
     DataHeader header;
 };
 
+// Capstone demo data packet
+// Not intended to be used for anything other then the demo
 struct TransmitData
 {
     float q0;
