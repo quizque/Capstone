@@ -1,3 +1,6 @@
+# Receives data from the server and then parses/displays
+# it on a pretty window using PyGame.
+
 from queue import Queue
 import threading
 from pygame.locals import *
@@ -7,13 +10,13 @@ import struct
 import numpy as np
 import time
 
-
+# Thread safe queue
 serial_data_queue = Queue()
 
 
 # Network configuration
-host = "localhost"  # Update this with the IP address or hostname of the server
-port = 12345  # Update this with the port number of the server
+host = "localhost"
+port = 12345
 
 # Create a socket object
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -21,7 +24,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # Connect to the server
 sock.connect((host, port))
 
-
+# TCP client thread
 def network_thread():
     try:
         while True:
@@ -29,11 +32,13 @@ def network_thread():
             data_bytes = sock.recv(36)
             data = struct.unpack("fffffffff", data_bytes)
 
-            # Parse the quaternion
+            # Parse the data
             q = list(data)
-            # print(q)
 
+            # Place the parsed data in the queue
             serial_data_queue.put(q)
+            
+            # If there is extra data in the queue, remove it
             if serial_data_queue.qsize() > 1:
                 serial_data_queue.get()
 
@@ -58,6 +63,7 @@ def main():
 
     clock = pygame.time.Clock()
 
+    # Load fonts and textures
     logo = pygame.image.load("logo.png").convert_alpha()
     logo_rect = logo.get_rect(center=(display[0] // 2, display[1] // 2))
     font_large = pygame.font.SysFont("Arial", 65)
@@ -68,27 +74,32 @@ def main():
     data_rate_graph_screen = pygame.Surface((520, 250))
     data_rate_graph_screen_prev = pygame.Surface((520, 250))
 
+    # Holds last data received
     latest_data = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     time_since_last_update = time.time() - 1
 
+    # Misc. variables for calculating some statistics
     first_data = True
     ref_height = 0
     smoothed_ref_height = 0
     height_max = 0
     height_min = 0
 
+    # Virtual surface for a graph
     height_graph_screen = pygame.Surface((520, 250))
     height_graph_screen_prev = pygame.Surface((520, 250))
 
     G_max = 2
     G_min = -2
 
+    # Virtual surface for a graph
     G_graph_screen = pygame.Surface((520, 250))
     G_graph_screen_prev = pygame.Surface((520, 250))
 
     last_feet = 0
 
+    # Disable GPS
     read_GPS = False
 
     # Main loop
@@ -98,6 +109,7 @@ def main():
                 pygame.quit()
                 return
 
+        # Check for new min/max
         if mbar_to_feet(latest_data[4]) - ref_height > height_max and not first_data:
             height_max = mbar_to_feet(latest_data[4]) - ref_height
         if mbar_to_feet(latest_data[4]) - ref_height < height_min and not first_data:
@@ -108,6 +120,7 @@ def main():
         if -latest_data[5] < G_min and not first_data:
             G_min = -latest_data[5]
 
+        # Get latest data in the network queue
         if not serial_data_queue.empty():
             latest_data = serial_data_queue.get()
             time_since_last_update = time.time()
@@ -116,14 +129,21 @@ def main():
                 ref_height = mbar_to_feet(latest_data[4])
                 first_data = False
 
+        # Get time between updates
+        # Sometimes this freaks out and returns weird values
         dt = time.time() - time_since_last_update
         if dt < 0.0001:
             dt = 0.01
 
+        # Use exponential moving average because some of the
+        # pressure sensors are broken and report crazy values
         smoothed_ref_height = 0.6 * smoothed_ref_height + 0.4 * mbar_to_feet(
             latest_data[4]
         )
 
+        #######################################################
+        ## PyGame drawing
+        
         screen.fill((77, 77, 77))
         screen.fill((50, 50, 50), (0, 0, 520, 250))
         screen.blit(logo, (-50, 0))
@@ -348,14 +368,19 @@ def main():
             )
             screen.blit(text_surface, (10, 640))
 
+        # Flip buffer
         pygame.display.flip()
+        
+        # Run at 60 FPS
         clock.tick(60)
 
 
 if __name__ == "__main__":
 
+    # Start network thread as daemon (will exit on main thread)
     network_thread = threading.Thread(target=network_thread)
     network_thread.daemon = True
     network_thread.start()
 
+    # Start main thread
     main()

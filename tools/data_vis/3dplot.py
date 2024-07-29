@@ -1,3 +1,7 @@
+# This was used primarily for developing the AHRS system
+# Displays a matplotlib 3D plot with the axises corresponding 
+# to the quaternion obtained from serial
+
 import serial
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -5,6 +9,7 @@ import numpy as np
 
 
 # Function to convert quaternion to rotation matrix
+# https://danceswithcode.net/engineeringnotes/quaternions/quaternions.html
 def quaternion_to_rotation_matrix(q):
     q0, q1, q2, q3 = q
     R = np.array(
@@ -39,7 +44,7 @@ def plot_heading(R, ax):
 
 
 # Serial port configuration
-serial_port = "COM4"  # Update this with your serial port
+serial_port = "COM4"
 baud_rate = 115200
 
 # Open the serial port
@@ -55,6 +60,7 @@ try:
         line = ser.readline().decode("utf-8").strip()
         print(f"Received: {line}")
 
+        # Reject bad data
         if len(line.split(",")) != 4:
             continue
 

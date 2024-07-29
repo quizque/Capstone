@@ -655,90 +655,110 @@ void setup()
   flash_size = flash.getCapacity();
 }
 
-unsigned long lastGPS = 0;
+// Do we have GPS Lock
 bool gpsLock = false;
 
+// Poor mans round robin tracker
+unsigned long lastGPS = 0;
 unsigned long lastPressure = 0;
-
 unsigned long lastIMU = 0;
-
 unsigned long lastMag = 0;
 
-unsigned long lastTime = 0; // Calculate loop time
-
+// Used to calculate how long a transmission and loop if
 unsigned long lastTransmit = 0;
+unsigned long lastRadio = 0;
 
+// Used to keep track of when to save/transmit data in override mode
+uint32_t lastOverdrive = 0;
+
+// Holds the current data packets so we
+// can save them to the flash
 GPSData gpsData;
 PressureData pressureData;
 IMUData imuData;
 MagData magData;
 
+// Used to blink the status LED
+// Only  used to show when we got a packet as a receiver
 bool led_toggle = false;
-
-unsigned long lastRadio = 0;
-
-uint32_t lastOverdrive = 0;
 
 void loop()
 {
-
-  // // USBSerial.printf("Loop time: %d\n", millis() - lastTime);
-  // // lastTime = millis();
-
+  // When is this loop occurring
   unsigned long currentMillis = millis();
 
-  // //////////////////////////////////////////
-  // /// Radio Data
-  // ///
-
 #ifdef TRANSMITTER
+
+  // Currently configured to only transmit GPS and height
+
+  //////////////////////////////////////////////////////////////
+  // Transmitter code
+
+  // If the time since we last transmitted is longer then we configured,
+  // send a new packet
   if (currentMillis - lastTransmit > DATA_RADIO_RATE && transmissionState == RADIOLIB_ERR_NONE)
   {
-
+    // Define packet
     TransmitData td;
 
+    // Insert data
     td.header.data_size = sizeof(TransmitData);
     td.header.data_type = DATA_TYPE_TRANSMIT;
     td.header.timestamp = millis();
 
+    // If we have lock, transmit it
     if (gpsLock)
     {
       td.lat = gpsData.latitude;
       td.lon = gpsData.longitude;
     }
+    // Otherwise, just send -1
     else
     {
       td.lat = 1;
       td.lon = 1;
     }
 
+    // Read and convert the pressure sensor value
     td.height = ps.pressureToAltitudeMeters(ps.readPressureMillibars());
 
+    // Transmit the signal and save the state
     transmissionState = radio.transmit((uint8_t *)&td, sizeof(TransmitData));
 
-    //    USBSerial.printf("Packet out %d\n", sizeof(TransmitData));
-
+    // Save the last time we transmitted so we know when to do it again
     lastTransmit = millis();
   }
+
 #else
 
+  //////////////////////////////////////////////////////////////
+  // Transmitter code
+
+  // Buffer for received data
   uint8_t data[128];
   transmissionState = radio.receive(data, 128);
 
   if (transmissionState == RADIOLIB_ERR_NONE)
   {
-
+    // Cast the data to a struct
     TransmitData *td = (TransmitData *)data;
 
+    // Check to make sure the header is correct
+    // (i.e. this is our data, not someone elses)
     if (td->header.packet_flag != 0xD3ADB33F)
       return;
 
+    // Debug
     USBSerial.print("[INFO] Received: ");
     USBSerial.printf("%d %d %d %f", td->header.timestamp, td->lon, td->lat, td->height);
+
+    // Write result to flash
     write_flash((uint8_t *)&td, sizeof(TransmitData));
 
+    // Toggle led to show we received data
     led_toggle = !led_toggle;
 
+    // LED toggle code
     if (led_toggle)
     {
       ledSetHigh();
@@ -750,30 +770,38 @@ void loop()
   }
   else
   {
+    // Radio error, usually received packet wrong
     USBSerial.println("e");
   }
 
   return;
 #endif
 
-  // //////////////////////////////////////////
-  // /// GPS Data
-  // ///
+  //////////////////////////////////////////////////////////////
+  // High seed data saving
 
+  //////////////////////////////////////////////////////////////
+  // GPS packet
+
+  // If we don't have lock, fade the LED
   if (!gpsLock)
   {
     led_fade_update();
   }
 
+  // If we have NO lock, gps is enabled, and its time to save (overdrive disabled here)
+  // We don't save here since we don't have any data, its just named that for consistantancy
   if ((!gpsLock && currentMillis - lastGPS > DATA_GPS_RATE_NO_LOCK && gps_enabled) ||
       (!gpsLock && currentMillis - lastGPS > DATA_GPS_RATE_NO_LOCK * 3 && gps_enabled))
   {
+    // Check if we have lock
     if (gnss.getFixType() != 0)
     {
       USBSerial.println("LOCK OBTAINED");
       ledSetHigh();
       gpsLock = true;
     }
+    // No lock :(
     else
     {
       USBSerial.println("NO LOCK OBTAINED");
@@ -784,9 +812,11 @@ void loop()
     lastGPS = currentMillis;
   }
 
+  // If we have lock, gps is enabled, and its time to save
   if ((gpsLock && currentMillis - lastGPS > DATA_GPS_RATE_LOCK && gps_enabled) ||
       (gpsLock && currentMillis - lastGPS > DATA_GPS_RATE_LOCK * 3 && gps_enabled))
   {
+    // Fill the GPS data struct
     gpsData.header.data_size = sizeof(GPSData);
     gpsData.header.data_type = DATA_TYPE_GPS;
     gpsData.header.timestamp = millis();
@@ -808,6 +838,7 @@ void loop()
     gpsData.speed = gnss.getGroundSpeed();
     gpsData.heading = gnss.getHeading();
 
+    // If we lose GPS lock, switch the LED to fade
     if (gpsData.fix == 0)
     {
       USBSerial.println("NO LOCK OBTAINED");
@@ -815,23 +846,28 @@ void loop()
     }
     else
     {
+      // Debug
       USBSerial.println("LOCK OBTAINED");
       USBSerial.printf("Lat: %d Long: %d Alt: %d Speed: %d Sats: %d Fix: %d\n", gpsData.latitude, gpsData.longitude, gpsData.altitude, gpsData.speed, gpsData.satellites, gpsData.fix);
+
+      // Save the data to the flash
       write_flash((uint8_t *)&gpsData, sizeof(GPSData));
       lastGPS = currentMillis;
     }
   }
 
   //////////////////////////////////////////
-  /// Pressure Data
-  ///
+  // Pressure Data
 
+  // If its time to save pressure data, its enabled
   if ((currentMillis - lastPressure > DATA_PRESSURE_RATE && pressure_enabled && lastOverdrive > currentMillis) ||
       (currentMillis - lastPressure > DATA_PRESSURE_RATE * 3 && pressure_enabled && lastOverdrive < currentMillis))
   {
+    // Read the pressure and temperature
     float pressure = ps.readPressureMillibars();
     float temperature = ps.readTemperatureC();
 
+    // Assemble the data
     pressureData.header.data_size = sizeof(PressureData);
     pressureData.header.data_type = DATA_TYPE_PRESSURE;
     pressureData.header.timestamp = millis();
@@ -839,25 +875,30 @@ void loop()
     pressureData.pressure = pressure;
     pressureData.temperature = temperature;
 
+    // Write the data to the flash
     write_flash((uint8_t *)&pressureData, sizeof(PressureData));
 
+    // Save the last time we saved the data
     lastPressure = currentMillis;
   }
 
-  // //////////////////////////////////////////
-  // /// IMU Data
-  // ///
+  ////////////////////////////////////////////
+  // IMU Data
 
+  // Overdrive activation code
   if (imu_enabled)
   {
     imu.read();
 
+    // Convert the accelerometer data to g
     imu.a.x = imu.a.x * 0.488 / 1000.0;
     imu.a.y = imu.a.y * 0.488 / 1000.0;
     imu.a.z = imu.a.z * 0.488 / 1000.0;
 
+    // Calculate the
     float acc = sqrt(imu.a.x * imu.a.x + imu.a.y * imu.a.y + imu.a.z * imu.a.z);
-    // USBSerial.printf("Accel: %f\n", acc);
+
+    // If we are over the specified limit, activate overdrive
     if (acc > ACC_OVERDRIVE_WRITE)
     {
       USBSerial.println("OVERDRIVE");
@@ -865,11 +906,14 @@ void loop()
     }
   }
 
+  // If its time to save the IMU data and its enabled
   if ((currentMillis - lastIMU > DATA_IMU_RATE && imu_enabled && lastOverdrive > currentMillis) ||
       (currentMillis - lastIMU > DATA_IMU_RATE * 3 && imu_enabled && lastOverdrive < currentMillis))
   {
+    // Read the data from the IMU
     imu.read();
 
+    // Assemble the data
     imuData.header.data_size = sizeof(IMUData);
     imuData.header.data_type = DATA_TYPE_IMU;
     imuData.header.timestamp = millis();
@@ -882,22 +926,23 @@ void loop()
     imuData.gyro_y = imu.g.y * 35.0;
     imuData.gyro_z = imu.g.z * 35.0;
 
-    // USBSerial.printf("Accel: %d %d %d Gyro: %d %d %d\n", imuData.acc_x, imuData.acc_y, imuData.acc_z, imuData.gyro_x, imuData.gyro_y, imuData.gyro_z);
-
+    // Write data to flash
     write_flash((uint8_t *)&imuData, sizeof(IMUData));
 
     lastIMU = currentMillis;
   }
 
-  // //////////////////////////////////////////
-  // /// Mag Data
-  // ///
+  ////////////////////////////////////////////
+  // Mag Data
 
+  // If its time to save the IMU data and its enabled
   if ((currentMillis - lastMag > DATA_MAG_RATE && mag_enabled && lastOverdrive > currentMillis) ||
       (currentMillis - lastMag > DATA_MAG_RATE * 3 && mag_enabled && lastOverdrive < currentMillis))
   {
+    // Read mag data
     mag.read();
 
+    // Assemble the packet
     magData.header.data_size = sizeof(MagData);
     magData.header.data_type = DATA_TYPE_MAG;
     magData.header.timestamp = millis();
@@ -906,8 +951,7 @@ void loop()
     magData.mag_y = (float)mag.m.y / 1711.0;
     magData.mag_z = (float)mag.m.z / 1711.0;
 
-    // USBSerial.printf("Mag: %f %f %f\n", magData.mag_x, magData.mag_y, magData.mag_z);
-
+    // Write to flash
     write_flash((uint8_t *)&magData, sizeof(MagData));
 
     lastMag = currentMillis;

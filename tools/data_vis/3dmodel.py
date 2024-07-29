@@ -1,3 +1,7 @@
+# Connects to the data server and displays the quaternion direction
+# as the model of a 3D rocket. PuGame is not designed for OpenGL
+# applications, so this program acts a little weird some times
+
 from queue import Queue
 import threading
 import numpy as np
@@ -8,13 +12,13 @@ import pygame
 import socket
 import struct
 
-
+# Thread safe queue
 serial_data_queue = Queue()
 
 
 # Network configuration
-host = "localhost"  # Update this with the IP address or hostname of the server
-port = 12345  # Update this with the port number of the server
+host = "localhost"
+port = 12345
 
 # Create a socket object
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -34,7 +38,10 @@ def network_thread():
             q = list(data[0:4])
             print(q)
 
+            # Push it onto the queue
             serial_data_queue.put(q)
+
+            # Remove any extra data off the queue
             if serial_data_queue.qsize() > 1:
                 serial_data_queue.get()
 
@@ -45,6 +52,9 @@ def network_thread():
         sock.close()
 
 
+# Convert a quaternion to a rotation matrix
+# This has been modified to work with OpenGL
+# and numpy, so it contains an extra row
 def quaternion_to_rotation_matrix(q):
     q0, q1, q2, q3 = q
     R = np.array(
@@ -74,6 +84,7 @@ def quaternion_to_rotation_matrix(q):
 
 
 # Function to load an OBJ file
+# https://medium.com/@harunijaz/the-code-above-is-a-python-function-that-reads-and-loads-data-from-a-obj-e6f6e5c3dfb9
 def load_obj(filename):
     vertices = []
     faces = []
@@ -105,6 +116,7 @@ def load_obj(filename):
 # Function to load the texture
 def load_texture(filename):
     texture_surface = pygame.image.load(filename)
+    # Convert pygame image to opengl texture
     texture_data = pygame.image.tostring(texture_surface, "RGB", 1)
     width, height = texture_surface.get_rect().size
     glEnable(GL_TEXTURE_2D)
@@ -131,8 +143,10 @@ def load_texture(filename):
 # Function to draw the loaded model with texture
 def draw_model(vertices, faces, texcoords, texcoord_indices, texture_id):
     glEnable(GL_TEXTURE_2D)
+    # Set texture, does not obey any UV maps
     glBindTexture(GL_TEXTURE_2D, texture_id)
     glBegin(GL_TRIANGLES)
+    # Draws each vertex individually, there should be faster way
     for i, face in enumerate(faces):
         for j, vertex in enumerate(face):
             glTexCoord2fv(texcoords[texcoord_indices[i][j]])
@@ -151,16 +165,18 @@ def main():
     gluPerspective(45, (display[0] / display[1]), 0.1, 50.0)
     glTranslatef(0.0, 0.0, -5)
 
-    # Load your 3D model (replace 'your_model.obj' with the path to your model file)
     vertices, faces, texcoords, texcoord_indices = load_obj("rocket.obj")
     global texture_id
-    # Load your texture (replace 'your_texture.png' with the path to your texture file)
+
+    # Texture obtained from texture haven
     texture_id = load_texture("rusty_metal_sheet_diff_1k.jpg")
 
     clock = pygame.time.Clock()
 
+    # Hold the last rotation (helps with a visual bug)
     last_rot = None
 
+    # Have we obtain data yet?
     r_dat = False
 
     # Main loop
@@ -170,16 +186,19 @@ def main():
                 pygame.quit()
                 return
 
+        # If we have new data
         if not serial_data_queue.empty():
+            # Read it, clear the screen buffer, and get ready to draw it
             serial_data = serial_data_queue.get()
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
             quaternion = serial_data_queue.get()
             last_rot = quaternion_to_rotation_matrix(quaternion)
             r_dat = True
 
-        # Clear the screen
+        # Clear the screen, again (weird bug)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
+        # If we have data
         if r_dat:
             # Apply the rotation matrix
             glLoadIdentity()
@@ -190,16 +209,22 @@ def main():
             glRotate(-90, 1, 0, 0)
             glMultMatrixf(np.linalg.inv(last_rot).T.flatten().tolist())
 
+            # Draw the model at the rotated matrix
             draw_model(vertices, faces, texcoords, texcoord_indices, texture_id)
 
+        # Flip buffer
         pygame.display.flip()
+
+        # Run at 60 FPS
         clock.tick(60)
 
 
 if __name__ == "__main__":
 
+    # Start networking thread as daemon (will exit on main exit)
     network_thread = threading.Thread(target=network_thread)
     network_thread.daemon = True
     network_thread.start()
 
+    # Start main
     main()

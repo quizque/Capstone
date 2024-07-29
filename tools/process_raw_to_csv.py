@@ -5,9 +5,6 @@ import csv
 data_header_format = (
     "<IIII"  # Read 4 unsigned ints (packet_flag, data_size, data_type, timestamp)
 )
-
-# GPS data formats
-# See data_types.h for the struct definition
 gps_data_format = "<HBBBBBBiiIIIBBBB"
 pressure_data_format = "<ff"
 imu_data_format = "<hhhhhh"
@@ -133,7 +130,7 @@ def export_to_csv(parsed_data, output_csv_path):
 
 
 # Path to the dat file
-dat_file_path = "rocket_data_raw_5.dat"
+dat_file_path = "rocket_data_raw_1.dat"
 
 # Path to the output CSV file
 output_csv_path = "parsed_data.csv"
