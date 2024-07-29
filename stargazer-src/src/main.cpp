@@ -420,6 +420,9 @@ void setup()
   // Check for flash
   flash.begin();
   USBSerial.println("[INFO] Checking for flash.");
+
+  // Check to make sure the flash is the right one
+  // Any should work, but its only tested with the one in the schematic
   uint32_t JEDEC = flash.getJEDECID();
   if (0xef4018 != JEDEC)
   {
@@ -429,7 +432,7 @@ void setup()
   USBSerial.println("[INFO] Flash found.");
   init_flash();
 
-  //   //////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////
 
   // Check for radio
   int state = radio.begin();
@@ -445,12 +448,6 @@ void setup()
   }
   else
   {
-    // #ifdef USING_SX1262 & !TRANSMITTER
-    //     radio.setDio1Action(setFlag);
-    // #else
-    //     radio.setDio0Action(setFlag);
-    // #endif
-
     USBSerial.println("[INFO] Radio found.");
   }
 
@@ -463,6 +460,9 @@ void setup()
   {
     USBSerial.println("[INFO] SD card found.");
 
+    // Check to see what the next file number should be
+    // so that we don't overwrite any previous data
+
     File root = SD.open("/");
     // Check for anything else named "rocket_data_raw_*.dat" and return
     // the highest number + 1
@@ -470,32 +470,46 @@ void setup()
     while (true)
     {
       File entry = root.openNextFile();
+
+      // No more files
       if (!entry)
       {
         break;
       }
+
+      // Skip directories
       if (entry.isDirectory())
       {
         continue;
       }
+
+      // Check the name
       String name = entry.name();
       if (name.startsWith("rocket_data_raw_") && name.endsWith(".dat"))
       {
+        // Extract the number from the name
         int num = name.substring(16, name.length() - 4).toInt();
+        // Check if it is the highest number
         if (num > max)
         {
           max = num;
         }
       }
+
       entry.close();
     }
+
+    // Increment the number
     max++;
+
     root.close();
 
     // Print
     USBSerial.print("[INFO] Next file number: ");
     USBSerial.println(max + 1);
 
+    // Check if there is any data in the flash memory
+    // If there is, dump it to the SD card
     if (current_flash_address != 0)
     {
       USBSerial.print("[INFO] Dumping data: ");
@@ -509,6 +523,7 @@ void setup()
       // Write data
       for (uint32_t i = 0; i < current_flash_address; i += 4096)
       {
+        // Read data from flash (we can only read 4096 bytes at a time)
         uint8_t readData[4096];
         if (flash.readByteArray(i, readData, 4096))
         {
@@ -525,6 +540,7 @@ void setup()
       file.close();
 
       // Erase flash
+      // Only erase the first sector, this will make it look like the flash is empty
       if (!flash.eraseSector(0x0))
       {
         USBSerial.println("[ERROR] Flash erase failed.");
@@ -535,6 +551,7 @@ void setup()
         USBSerial.println("[INFO] Flash erase success.");
       }
 
+      // Reset the current flash address and reinitialize the flash
       current_flash_address = 0;
       init_flash();
     }
@@ -570,6 +587,7 @@ void setup()
     imu_enabled = true;
 
     imu.enableDefault();
+    // Set the accelerometer to 8g and the gyro to 1000dps
     imu.writeReg(LSM6::CTRL1_XL, 0x84);
     imu.writeReg(LSM6::CTRL2_G, 0x88);
   }
@@ -585,6 +603,7 @@ void setup()
     mag_enabled = true;
 
     mag.enableDefault();
+    // Set the magnetometer to 4 gauss
     mag.writeReg(LIS3MDL::CTRL_REG2, 0x60);
   }
 
@@ -608,6 +627,7 @@ void setup()
   /// Device setup complete
   ///
 
+  // Configure radio
 #ifdef USE_LORA
   radio.setFrequency(919.0);
   radio.setBandwidth(500.0);
@@ -618,17 +638,20 @@ void setup()
   radio.setCRC(true);
 #endif
 
+  // Configure GPS
   gnss.setI2COutput(COM_TYPE_UBX);
   gnss.saveConfigSelective(VAL_CFG_SUBSEC_IOPORT);
   gnss.setNavigationFrequency(5);
 
-  // DeviceActivateData
+  // Save a special data type to the flash memory to
+  // indicate that the device has been activated
   DeviceActivateData deviceActivateData;
   deviceActivateData.header.data_size = sizeof(DeviceActivateData);
   deviceActivateData.header.data_type = DATA_TYPE_DEVICE_ACTIVATE;
 
   write_flash((uint8_t *)&deviceActivateData, sizeof(DeviceActivateData));
 
+  // Get the flash size
   flash_size = flash.getCapacity();
 }
 
