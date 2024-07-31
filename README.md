@@ -22,3 +22,11 @@ Contains firmware for the Stargazer demo
 **stargazer-src/**
 
 Contains the main firmware for Stargazer
+
+**tools/**
+
+Contains the script to convert raw data obtained from Stargazer into a CSV file. Also contains the demo day visualizers
+
+**vibration-bay-src/**
+
+Contains the firmware used in the vibration testing bay
