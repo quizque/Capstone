@@ -7,7 +7,7 @@ Stargazer is an all-in-one logger capable of high-speed data saving and transmit
 
 ### Directory Setup
 
-**sensor_testing/**
+**sensor-testing/**
 
 Contains programs and results from various sensor tests.
 
